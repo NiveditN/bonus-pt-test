@@ -1,0 +1,91 @@
+<ion-view view-title="Sign Up">
+    <ion-content has-bouncing="true">
+
+    	<!-- App Name -->
+    	<div class="row">
+			<div class="col">
+				<div class="text-center">
+					<h4>BonusPoint</h4>
+					Gifts and more!
+				</div>
+			</div>
+		</div>
+
+		<!-- Signup Form -->
+		<div class="row">
+			<div class="col">
+				<div>
+					<!-- email and password -->
+
+					<!-- floating labels -->
+					<!-- <div class="list">
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Email</span>
+							<input type="text" placeholder="Email">
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Password</span>
+							<input type="password" placeholder="Password">
+						</label>
+						<label class="item item-input item-floating-label">
+							<span class="input-label">Confirm Password</span>
+							<input type="password" placeholder="Confirm Password">
+						</label>
+					</div> -->
+
+					<!-- inline labels -->
+					<div class="list">
+						<label class="item item-input">
+							<span class="input-label">Email</span>
+							<input type="text" placeholder="sam@email.com">
+						</label>
+						<label class="item item-input">
+							<span class="input-label">Password</span>
+							<input type="password" placeholder="hello#123">
+						</label>
+						<label class="item item-input">
+							<span class="input-label">Confirm Password</span>
+							<input type="password" placeholder="hello#123">
+						</label>
+
+						<!-- security question -->
+						<label class="item item-input item-select">
+							<div class="input-label">
+								Security Question
+							</div>
+							<select class="text-left" style="direction: ltr;">
+								<option selected> Which street did you grow up on? </option>
+								<option> What is your favorite color? </option>
+							</select>
+						</label>
+						<!-- <label class="item item-input item-floating-label"> -->
+						<label class="item item-input">
+							<span class="input-label">Your answer</span>
+							<input type="text" placeholder="Elm Street">
+						</label>
+
+						<!-- terms and conditions -->
+						<div>
+							<ion-checkbox ng-model="termsCheckbox">
+								I accept the <a href="#/info/terms">Terms & Conditons</a>.
+							</ion-checkbox>
+						</div>						
+					</div>
+
+					<!-- next -->
+					<div class="text-right">
+						<button class="button button-calm">
+							Next
+						</button>	
+					</div>
+
+					<!-- re-captcha -->
+					<!-- <div> -->
+						<!-- Todo: needs to include reCaptcha for meteor but in angular format -->
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>
