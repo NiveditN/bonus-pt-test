@@ -9,3 +9,10 @@
 	max-width: 100%;
 	/*align: left;*/
 }
+
+.item-select select
+{
+    right: auto;
+    padding: 13px 45px 15px 0px;
+    direction: ltr;
+}
