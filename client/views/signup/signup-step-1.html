@@ -1,0 +1,76 @@
+<ion-view view-title="Sign Up">
+    <ion-content has-bouncing="true">
+
+    	<!-- App Name -->
+    	<div class="row">
+			<div class="col">
+				<div class="text-center">
+					<h4>BonusPoint</h4>
+					Gifts and more!
+				</div>
+			</div>
+		</div>
+
+		<!-- Signup Form -->
+		<div class="row">
+			<div class="col">
+				<div>
+					<div class="list">
+
+						<!-- email and password -->
+						<label class="item item-input">
+							<span class="input-label">Email</span>
+							<input type="email" ng-model="signup.email" placeholder="sam@email.com">
+						</label>
+						<label class="item item-input">
+							<span class="input-label">Password</span>
+							<input type="password" ng-model="signup.password" placeholder="hello#123">
+						</label>
+						<label class="item item-input">
+							<span class="input-label">Confirm Password</span>
+							<input type="password" ng-model="signup.confirmPassword" placeholder="hello#123">
+						</label>
+
+						<!-- security question -->
+						<label class="item item-input item-select">
+							<div class="input-label">
+								Security Question
+							</div>
+							<select ng-options="item.content for item in signup.securityQuestions track by item.id" ng-model="signup.securityQuestion"></select>
+						</label>
+
+						<!-- security answer -->
+						<label class="item item-input">
+							<span class="input-label">Your answer</span>
+							<input type="text" ng-model="signup.securityAnswer" placeholder="Elm Street">
+						</label>
+
+						<!-- terms and conditions -->
+						<div>
+							<ion-checkbox ng-model="signup.terms">
+								I accept the <a href="#/info/terms">Terms & Conditons</a>.
+							</ion-checkbox>
+						</div>						
+					</div>
+
+					<!-- next -->
+					<div class="text-right">
+						<!-- <button ui-sref="signup-step-2" ng-click="getData()" class="button button-calm">
+							Next
+						</button> -->
+						<button ng-click="signup.signup()" class="button button-calm">
+							Next
+						</button>
+						
+					</div>
+
+					<!-- re-captcha -->
+					<!-- <div> -->
+						<!-- Todo: needs to include reCaptcha for meteor but in angular format -->
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

@@ -18,21 +18,21 @@
 					<div class="list">
 						<label class="item item-input item-floating-label">
 							<span class="input-label">Email</span>
-							<input type="text" placeholder="Email">
+							<input type="text" ng-model="logger.email" placeholder="Email">
 						</label>
 						<label class="item item-input item-floating-label">
 							<span class="input-label">Password</span>
-							<input type="password" placeholder="Password">
+							<input type="password" ng-model="logger.password" placeholder="Password">
 						</label>
 					</div>
 
 					<div>
-						<button class="button button-block button-positive">
+						<button ng-click="logger.login()" class="button button-block button-positive">
 							Login
 						</button>
 
 						<div class="text-center">
-							<a href="#/tab/profile"> Forgot password </a>	
+							<a href="#/login"> Forgot password </a>	
 						</div>
 
 						<!-- <a href="#/tab/profile" style="width:60%" class="center button button-royal">
