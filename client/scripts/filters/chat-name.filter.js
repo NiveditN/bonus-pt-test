@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .filter('chatName', chatName);
 
@@ -13,3 +13,4 @@ function chatName() {
     return hasName ? otherUser.profile.name : chat.name || 'NO NAME';
   };
 }
+*/

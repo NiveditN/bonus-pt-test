@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .filter('calendar', calendar);
 
@@ -13,4 +13,4 @@ function calendar () {
       sameElse : 'DD/MM/YY'
     });
   };
-}
+}*/

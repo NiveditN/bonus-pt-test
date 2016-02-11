@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('ProfileCtrl', ProfileCtrl);
 
@@ -53,4 +53,4 @@ function ProfileCtrl ($scope, $reactive, $state, $ionicPopup, $log, $ionicLoadin
       okType: 'button-positive button-clear'
     });
   }
-}
+}*/

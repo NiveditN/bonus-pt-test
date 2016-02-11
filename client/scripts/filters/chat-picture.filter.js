@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .filter('chatPicture', chatPicture);
 
@@ -12,4 +12,4 @@ function chatPicture () {
 
     return hasPicture ? otherUser.profile.picture : chat.picture || '/user-default.svg';
   };
-}
+}*/

@@ -19,7 +19,9 @@ momentjs:moment
 fourseven:scss
 jasonaibrahim:angular-moment
 check
-okland:accounts-phone
+# okland:accounts-phone
 reywood:publish-composite
 okland:camera-ui
 angular
+sanjo:jasmine
+velocity:html-reporter

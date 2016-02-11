@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .directive('input', input);
 
@@ -50,4 +50,4 @@ function input ($timeout) {
       }
     });
   }
-}
+}*/

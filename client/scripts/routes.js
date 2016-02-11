@@ -7,11 +7,12 @@ function config($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'client/templates/login/login.html',
-      controller: 'LoginCtrl as logger'
+      // controller: 'LoginCtrl as logger'
     })
     .state('signup', {
       url: '/signup',
-      templateUrl: 'client/templates/login/signup-step-1.html'
+      templateUrl: 'client/templates/login/signup-step-1.html',
+      controller: 'AuthCtrl as auth'
     })
     .state('signup-step-2', {
       url: '/signup/step-2',
@@ -46,68 +47,68 @@ function config($stateProvider, $urlRouterProvider) {
     //   url: '/step-3',
     //   templateUrl: 'client/templates/login/signup-step-3.html'
     // })
-    .state('tab', {
-      url: '/tab',
-      abstract: true,
-      templateUrl: 'client/templates/tabs.html',
-      resolve: {
-        user: isAuthorized,
-        chats() {
-          return Meteor.subscribe('chats');
-        }
-      }
-    })
-    .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'client/templates/chats.html',
-          controller: 'ChatsCtrl as chats'
-        }
-      }
-    })
-    .state('tab.chat', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'client/templates/chat.html',
-          controller: 'ChatCtrl as chat'
-        }
-      }
-    })
+    // .state('tab', {
+    //   url: '/tab',
+    //   abstract: true,
+    //   templateUrl: 'client/templates/tabs.html',
+    //   resolve: {
+    //     user: isAuthorized,
+    //     chats() {
+    //       return Meteor.subscribe('chats');
+    //     }
+    //   }
+    // })
+    // .state('tab.chats', {
+    //   url: '/chats',
+    //   views: {
+    //     'tab-chats': {
+    //       templateUrl: 'client/templates/chats.html',
+    //       controller: 'ChatsCtrl as chats'
+    //     }
+    //   }
+    // })
+    // .state('tab.chat', {
+    //   url: '/chats/:chatId',
+    //   views: {
+    //     'tab-chats': {
+    //       templateUrl: 'client/templates/chat.html',
+    //       controller: 'ChatCtrl as chat'
+    //     }
+    //   }
+    // })
     // .state('login', {
     //   url: '/login',
     //   templateUrl: 'client/templates/login.html',
     //   controller: 'LoginCtrl as logger'
     // })
-    .state('confirmation', {
-      url: '/confirmation/:phone',
-      templateUrl: 'client/templates/confirmation.html',
-      controller: 'ConfirmationCtrl as confirmation'
-    })
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'client/templates/profile.html',
-      controller: 'ProfileCtrl as profile',
-      resolve: {
-        user: isAuthorized
-      }
-    })
-    .state('tab.settings', {
-      url: '/settings',
-      views: {
-        'tab-settings': {
-          templateUrl: 'client/templates/settings.html',
-          controller: 'SettingsCtrl as settings',
-        }
-      }
-    });
+    // .state('confirmation', {
+    //   url: '/confirmation/:phone',
+    //   templateUrl: 'client/templates/confirmation.html',
+    //   controller: 'ConfirmationCtrl as confirmation'
+    // })
+    // .state('profile', {
+    //   url: '/profile',
+    //   templateUrl: 'client/templates/profile.html',
+    //   controller: 'ProfileCtrl as profile',
+    //   resolve: {
+    //     user: isAuthorized
+    //   }
+    // })
+    // .state('tab.settings', {
+    //   url: '/settings',
+    //   views: {
+    //     'tab-settings': {
+    //       templateUrl: 'client/templates/settings.html',
+    //       controller: 'SettingsCtrl as settings',
+    //     }
+    //   }
+    // });
 
   $urlRouterProvider.otherwise('login');
 
   ////////////
 
-  function isAuthorized($q) {
+  /*function isAuthorized($q) {
     let deferred = $q.defer();
 
     if (_.isEmpty(Meteor.user()))
@@ -116,5 +117,5 @@ function config($stateProvider, $urlRouterProvider) {
       deferred.resolve();
 
     return deferred.promise;
-  }
+  }*/
 }

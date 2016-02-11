@@ -15,37 +15,20 @@
 		<div class="row">
 			<div class="col">
 				<div>
-					<!-- email and password -->
-
-					<!-- floating labels -->
-					<!-- <div class="list">
-						<label class="item item-input item-floating-label">
-							<span class="input-label">Email</span>
-							<input type="text" placeholder="Email">
-						</label>
-						<label class="item item-input item-floating-label">
-							<span class="input-label">Password</span>
-							<input type="password" placeholder="Password">
-						</label>
-						<label class="item item-input item-floating-label">
-							<span class="input-label">Confirm Password</span>
-							<input type="password" placeholder="Confirm Password">
-						</label>
-					</div> -->
-
-					<!-- inline labels -->
 					<div class="list">
+
+						<!-- email and password -->
 						<label class="item item-input">
 							<span class="input-label">Email</span>
-							<input type="email" placeholder="sam@email.com">
+							<input type="email" ng-model="auth.email" placeholder="sam@email.com">
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Password</span>
-							<input type="password" placeholder="hello#123">
+							<input type="password" ng-model="auth.password" placeholder="hello#123">
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Confirm Password</span>
-							<input type="password" placeholder="hello#123">
+							<input type="password" ng-model="auth.confirmPassword" placeholder="hello#123">
 						</label>
 
 						<!-- security question -->
@@ -53,20 +36,22 @@
 							<div class="input-label">
 								Security Question
 							</div>
-							<select class="text-left" style="direction: ltr;">
+							<!-- <select class="text-left" ng-model="auth.securityQuestion">
 								<option selected> Which street did you grow up on? </option>
 								<option> What is your favorite color? </option>
-							</select>
+							</select> -->
+							<select ng-options="item.subItem as item.label for item in auth.values track by item.id" ng-model="auth.securityQuestion"></select>
 						</label>
-						<!-- <label class="item item-input item-floating-label"> -->
+
+						<!-- security answer -->
 						<label class="item item-input">
 							<span class="input-label">Your answer</span>
-							<input type="text" placeholder="Elm Street">
+							<input type="text" ng-model="auth.securityAnswer" placeholder="Elm Street">
 						</label>
 
 						<!-- terms and conditions -->
 						<div>
-							<ion-checkbox ng-model="termsCheckbox">
+							<ion-checkbox ng-model="auth.termsCheckbox">
 								I accept the <a href="#/info/terms">Terms & Conditons</a>.
 							</ion-checkbox>
 						</div>						
@@ -74,11 +59,13 @@
 
 					<!-- next -->
 					<div class="text-right">
-						<!-- <a href="#/signup/step-2" ui-sref="signup.step2"> -->
-						<button ui-sref="signup-step-2" class="button button-calm">
+						<!-- <button ui-sref="signup-step-2" ng-click="getData()" class="button button-calm">
+							Next
+						</button> -->
+						<button ng-click="auth.getData()" class="button button-calm">
 							Next
 						</button>
-						<!-- </a>	 -->
+						
 					</div>
 
 					<!-- re-captcha -->

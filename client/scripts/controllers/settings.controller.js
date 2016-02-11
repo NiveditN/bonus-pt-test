@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('SettingsCtrl', SettingsCtrl);
 
@@ -14,4 +14,4 @@ function SettingsCtrl($scope, $reactive, $state) {
       $state.go('login');
     });
   }
-}
+}*/

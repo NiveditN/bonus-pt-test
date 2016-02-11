@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .run(run);
 
@@ -10,4 +10,4 @@ function run($rootScope, $state) {
       $state.go('login');
     }
   });
-}
+}*/

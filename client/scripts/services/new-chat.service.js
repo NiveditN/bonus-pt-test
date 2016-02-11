@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .service('NewChat', NewChat);
 
@@ -25,4 +25,4 @@ function NewChat($rootScope, $ionicModal) {
     this._scope.$destroy();
     this._modal.remove();
   }
-}
+}*/

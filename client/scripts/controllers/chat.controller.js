@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('ChatCtrl', ChatCtrl);
 
@@ -85,4 +85,4 @@ function ChatCtrl ($scope, $reactive, $stateParams, $ionicScrollDelegate, $timeo
   function closeKeyboard () {
     // cordova.plugins.Keyboard.close();
   }
-}
+}*/

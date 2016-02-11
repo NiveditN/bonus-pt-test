@@ -1,4 +1,4 @@
-Meteor.startup(function () {
+/*Meteor.startup(function () {
   if (Meteor.users.find().count() != 0) return;
 
   Accounts.createUserWithPhone({
@@ -21,4 +21,4 @@ Meteor.startup(function () {
       name: 'My friend 3'
     }
   });
-});
+});*/

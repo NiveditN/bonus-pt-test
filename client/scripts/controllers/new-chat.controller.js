@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('NewChatCtrl', NewChatCtrl);
 
@@ -35,4 +35,4 @@ function NewChatCtrl($scope, $reactive, $state, NewChat) {
     hideNewChatModal();
     return $state.go('tab.chat', { chatId: chatId });
   }
-}
+}*/

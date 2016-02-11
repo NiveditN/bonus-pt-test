@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('ChatsCtrl', ChatsCtrl);
 
@@ -23,4 +23,4 @@ function ChatsCtrl ($scope, $reactive, NewChat) {
   function remove (chat) {
     Meteor.call('removeChat', chat._id);
   }
-}
+}*/

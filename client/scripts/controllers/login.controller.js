@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('LoginCtrl', LoginCtrl);
 
@@ -50,4 +50,4 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
       okType: 'button-positive button-clear'
     });
   }
-}
+}*/

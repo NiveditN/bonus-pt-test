@@ -1,4 +1,4 @@
-Meteor.publish('users', function () {
+/*Meteor.publish('users', function () {
   return Meteor.users.find({}, { fields: { profile: 1 } });
 });
 
@@ -25,4 +25,4 @@ Meteor.publishComposite('chats', function () {
       }
     ]
   };
-});
+});*/

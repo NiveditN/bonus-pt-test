@@ -1,4 +1,4 @@
-angular
+/*angular
   .module('bonuspoint')
   .controller('ConfirmationCtrl', ConfirmationCtrl);
 
@@ -28,4 +28,4 @@ function ConfirmationCtrl($scope, $reactive, $state, $ionicPopup, $log) {
       okType: 'button-positive button-clear'
     });
   }
-}
+}*/
