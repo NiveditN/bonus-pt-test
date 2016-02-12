@@ -71,14 +71,9 @@
 							<div class="input-label">
 								Country
 							</div>
-							<select ng-options="item.content for item in signup.countries track by item.id" ng-model="signup.business.country"></select>
+							<select ng-options="item.name for item in signup.countries track by item.id" ng-model="signup.business.country"></select>
 						</label>
-						<!-- <label class="item item-input">
-							<span class="input-label">Country</span>
-							<input type="text" ng-model="" placeholder="Country">
-						</label> -->
 					
-						<!-- <br/> -->
 						<!-- <h4>Upload Business Document</h4> -->
 						<div class="item item-divider"> 
 							Upload Business Document
@@ -99,11 +94,6 @@
 							Next
 						</button> -->	
 					</div>
-
-					<!-- re-captcha -->
-					<!-- <div> -->
-						<!-- Todo: needs to include reCaptcha for meteor but in angular format -->
-					<!-- </div> -->
 				</div>
 			</div>
 		</div>

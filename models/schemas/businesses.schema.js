@@ -1,7 +1,8 @@
 Schemas.Businesses = new SimpleSchema({
 
 	ownerId: {
-		type: Object
+		type: Object,
+		optional: true
 	},
 		'ownerId.effectiveFrom': {
 			type: Date,
@@ -22,15 +23,18 @@ Schemas.Businesses = new SimpleSchema({
 		'ownerId.type': {
 			type: Object
 		},
-		'ownerId.type.typeId': {
-			type: String,
-			optional: true
-		},
-		'ownerId.type.typeName': {
-			type: String,
-			optional: true
-		},
-
+			'ownerId.type.typeId': {
+				type: String,
+				optional: true
+			},
+			'ownerId.type.typeName': {
+				type: String,
+				optional: true
+			},
+	established: {
+		type: Date,
+		optional: true
+	},
 	businessLicense: {
 		type: Object
 	},
@@ -38,14 +42,14 @@ Schemas.Businesses = new SimpleSchema({
 			type: String,
 			optional: true
 		},
-		'businessLicense.effectiveFrom': {
-			type: Date,
-			optional: true
-		},
-		'businessLicense.effectiveTo':{
-			type: Date,
-			optional: true
-		},
+			'businessLicense.effectiveFrom': {
+				type: Date,
+				optional: true
+			},
+			'businessLicense.effectiveTo':{
+				type: Date,
+				optional: true
+			},
 		'businessLicense.image': {
 			type: String,
 			optional: true

@@ -18,6 +18,7 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 					return showErrorPopup(err.reason);					
 				}
 				console.log('Success', res);
+				console.log(Meteor.user());
 				// return showSuccessPopup();
 				return $state.go('dashboard');				
 			});

@@ -14,8 +14,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 		id: 2,
 		content: 'What is your favorite color?'
 	}];
-	this.countries = [{	id: 1, content: 'Hong Kong'	}, { id: 2,	content: 'China' }];
-	this.ownerIdTypes = [{ id: 1, content: 'Government ID' }, { id: 2, content: 'Other ID' }]
+	this.countries = [{	id: 1, name: 'Hong Kong'	}, { id: 2,	name: 'China' }];
+	this.ownerIdTypes = [{ id: 1, name: 'Government ID' }, { id: 2, name: 'Other ID' }]
 
 	this.securityQuestion = this.securityQuestions[0];
 	this.business = {
@@ -66,17 +66,30 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 	function registerBusiness() {
 
-		console.log('IN BUSINESS')
-
+		console.log('IN BUSINESS');
 		console.log(this.business);
 
 		// storeName, ownerName, established, licenseNumber, line1, line2, city, state, postalCode, country
 
 		// insert business
-		// insert address, licenseNumber
+		// insert established, address, licenseNumber
+		Meteor.call('registerBusiness', this.business, function(err, res) {
+			if(err) {
+				return console.log('Error', err);
+			}
 
-		// update user 
-		// insert businessId 
+			// update user 
+			// insert businessId 
+			// var this.businessId = res;
+
+			// Meteor.call('registerBusinessId', this.businessId, function(err, res) {
+
+			// })
+
+			// Meteor.call('updateUserProfile')
+
+			return console.log('Success', res);
+		});
 
 		// insert shop
 		// insert name, ownerName, address, businessId

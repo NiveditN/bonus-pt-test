@@ -6,13 +6,13 @@ Schemas.Users = new SimpleSchema({
     emails: {
         type: [Object]
     },
-    'emails.$.address': {
-        type: String,
-        regEx: SimpleSchema.RegEx.Email
-    },
-    'emails.$.verified': {
-        type: Boolean
-    },
+	    'emails.$.address': {
+	        type: String,
+	        regEx: SimpleSchema.RegEx.Email
+	    },
+	    'emails.$.verified': {
+	        type: Boolean
+	    },
 	status: {
 		type: String,
 		optional: true
@@ -28,92 +28,146 @@ Schemas.Users = new SimpleSchema({
     profile: {
         type: Object
     },
-	'profile.name': {
-		type: Object,
-        optional: true
-	},
-	'profile.name.salutation': {
-		type: String,
-		optional: true
-		// autoform: {
-		// 	options: [
-		// 		{ label: "Mr.", value: "Mr." },
-		// 		{ label: "Mrs.", value: "Mrs." },
-		// 		{ label: "Ms.", value: "Ms." },
-		// 	]
-		// }
-	},
-	'profile.name.firstName': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
-	},
-	'profile.name.middleName': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
-	},
-	'profile.name.lastName': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$$/
-	},	
+		'profile.name': {
+			type: Object,
+	        optional: true
+		},
+			'profile.name.salutation': {
+				type: String,
+				optional: true
+				// autoform: {
+				// 	options: [
+				// 		{ label: "Mr.", value: "Mr." },
+				// 		{ label: "Mrs.", value: "Mrs." },
+				// 		{ label: "Ms.", value: "Ms." },
+				// 	]
+				// }
+			},
+			'profile.name.firstName': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
+			},
+			'profile.name.middleName': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
+			},
+			'profile.name.lastName': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$$/
+			},	
 
-	'profile.name.firstNameLocal': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
-	},
-	'profile.name.middleNameLocal': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
-	},
-	'profile.name.lastNameLocal': {
-		type: String,
-        optional: true,
-		regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$$/
-	},
+			'profile.name.firstNameLocal': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
+			},
+			'profile.name.middleNameLocal': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$/
+			},
+			'profile.name.lastNameLocal': {
+				type: String,
+		        optional: true,
+				regEx: /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$$/
+			},
 
-	'profile.securityQuestion': {
-		type: Object,
-	},
-	'profile.securityQuestion.id': {
-		type: Number,
-	},
-	'profile.securityQuestion.content': {
-		type: String,
-	},
-	'profile.securityAnswer': {
-		type: String        
-	},
+		'profile.securityQuestion': {
+			type: Object,
+		},
+			'profile.securityQuestion.id': {
+				type: Number,
+			},
+			'profile.securityQuestion.content': {
+				type: String,
+			},
+			
+		'profile.securityAnswer': {
+			type: String        
+		},
 
-	'profile.mobile':{
-		type: Number,
-		optional: true
-	},
-	'profile.businessId':{
-		type: String,
-		optional: true
-	},
+		'profile.mobile':{
+			type: Number,
+			optional: true
+		},
+		'profile.businessId':{
+			type: String,
+			optional: true
+		},
 
-	'profile.gender':{
-		type: String,
-		optional: true
-	},
-	'profile.birthday':{
-		type: Date,
-		optional: true
-	},
-	'profile.jobTitle':{
-		type: String,
-		optional: true
-	},
+		'profile.gender':{
+			type: String,
+			optional: true
+		},
+		'profile.dateOfBirth':{
+			type: Date,
+			optional: true
+		},
+		'profile.jobTitle':{
+			type: String,
+			optional: true
+		},
 
-	'profile.userType':{
-		type: String,
-		optional: true
-	},
+		'profile.userType':{
+			type: String,
+			optional: true
+		},
+
+		'profile.address': {
+			type: Object
+		},
+			'profile.address.state': {
+				type: String,
+				optional: true
+			},
+			'profile.address.city': {
+				type: String,
+				optional: true
+			},
+			'profile.address.line1': {
+				type: String,
+				optional: true
+			},
+			'profile.address.line2': {
+				type: String,
+				optional: true
+			},
+			'profile.address.postalCode': {
+				type: String,
+				optional: true
+			},
+			'profile.address.country': {
+				type: String,
+				optional: true
+			},
+			'profile.address.countryCode': {
+				type: String,
+				optional: true
+			},
+
+			'profile.address.stateLocal': {
+				type: String,
+				optional: true
+			},
+			'profile.address.cityLocal': {
+				type: String,
+				optional: true
+			},
+			'profile.address.countryLocal': {
+				type: String,
+				optional: true
+			},
+			'profile.address.line1Local': {
+				type: String,
+				optional: true
+			},
+			'profile.address.line2Local':{
+				type: String,
+				optional: true		
+			},
 
 	services: { 
 		type: Object, 

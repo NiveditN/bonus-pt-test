@@ -28,18 +28,8 @@
 							<div class="input-label">
 								Country
 							</div>
-							<select ng-options="item.content for item in signup.countries track by item.id" ng-model="signup.profile.country"></select>
+							<select ng-options="item.name for item in signup.countries track by item.id" ng-model="signup.profile.country"></select>
 						</label>
-						<!-- <label class="item item-input item-select">
-							<div class="input-label">
-								Country
-							</div>
-							<select class="text-left" style="direction: ltr;">
-								<option selected> Hong Kong </option>
-								<option> Singapore </option>
-								<option> China </option>							
-							</select>
-						</label> -->
 					
 						<label class="item item-input">
 							<span class="input-label">First Name</span>
@@ -58,10 +48,10 @@
 							<span class="input-label">Gender</span>
 							<div class="row">
 								<div class="col">
-									<ion-radio ng-model="signup.profile.gender" ng-value="Male">Male</ion-radio>
+									<ion-radio ng-model="signup.profile.gender" ng-value="'Male'">Male</ion-radio>
 								</div>
 								<div class="col">
-									<ion-radio ng-model="signup.profile.gender" ng-value="Female">Female</ion-radio>
+									<ion-radio ng-model="signup.profile.gender" ng-value="'Female'">Female</ion-radio>
 								</div>
 							</div>
 						</div>
@@ -118,15 +108,6 @@
 							</div>
 							<select ng-options="item.content for item in signup.ownerIdTypes track by item.id" ng-model="signup.profile.ownerIdType"></select>
 						</label>
-						<!-- <label class="item item-input item-select">
-							<div class="input-label">
-								ID Type
-							</div>
-							<select class="text-left" style="direction: ltr;">
-								<option selected> Government ID </option>
-								<option> Other </option>
-							</select>
-						</label> -->
 
 						<div class="item item-divider"> 
 					        Upload Scanned ID Front
@@ -154,11 +135,6 @@
 							Finish
 						</button> -->	
 					</div>
-
-					<!-- re-captcha -->
-					<!-- <div> -->
-						<!-- Todo: needs to include reCaptcha for meteor but in angular format -->
-					<!-- </div> -->
 				</div>
 			</div>
 		</div>
