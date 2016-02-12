@@ -22,6 +22,10 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/signup/step-3',
       templateUrl: 'client/views/signup/signup-step-3.html'
     })
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: 'client/views/dashboard/dashboard.html'
+    })
     // .state('login', {
     //   url: '/login',
     //   templateUrl: 'client/templates/login/login.html' //,

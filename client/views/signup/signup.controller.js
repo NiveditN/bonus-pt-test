@@ -5,6 +5,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 	this.signup = signup;
 	this.showInvalidPopup = showInvalidPopup;
+	this.showErrorPopup = showErrorPopup;
+	this.showSuccessPopup = showSuccessPopup;
 
 	this.securityQuestions = [{
 		id: 1,
@@ -41,9 +43,11 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 			}
 		}, function(err, res) {
 			if(err) {
+				// return this.showErrorPopup(err);
 				return;
 			}
-			return successPopup();
+			// return this.showSuccessPopup();
+			return showSuccessPopup()
 		})
 
 	}
@@ -59,14 +63,25 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 		});
 	}
 
-	function successPopup() {
+	function showSuccessPopup() {
 		var successPopup = $ionicPopup.alert({
 			title: "User created",
 			template: '<div>Step 1 completed!</div>',
 			cssClass: 'text-center'
 		});
 		successPopup.then((res) => {
-			// console.log('Compliance will be rewarded.');
+			console.log('Compliance will be rewarded.');
+		});
+	}
+
+	function showErrorPopup(err) {
+		var errorPopup = $ionicPopup.alert({
+			title: "User not created",
+			template: '<div>'+ err + '</div>',
+			cssClass: 'text-center'
+		});
+		errorPopup.then((res) => {
+			console.log('Compliance will be rewarded.');
 		});
 	}
 
