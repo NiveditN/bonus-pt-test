@@ -16,11 +16,13 @@ function config($stateProvider, $urlRouterProvider) {
     })
     .state('signup-step-2', {
       url: '/signup/step-2',
-      templateUrl: 'client/views/signup/signup-step-2.html'
+      templateUrl: 'client/views/signup/signup-step-2.html',
+      controller: 'SignupCtrl as signup'
     })
     .state('signup-step-3', {
       url: '/signup/step-3',
-      templateUrl: 'client/views/signup/signup-step-3.html'
+      templateUrl: 'client/views/signup/signup-step-3.html',
+      controller: 'SignupCtrl as signup'
     })
     .state('dashboard', {
       url: '/dashboard',

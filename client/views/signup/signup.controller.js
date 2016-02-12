@@ -4,6 +4,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	$reactive(this).attach($scope);
 
 	this.signup = signup;
+	this.registerBusiness = registerBusiness;
+	this.createProfile = createProfile;
 	
 	this.securityQuestions = [{
 		id: 1,
@@ -12,9 +14,25 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 		id: 2,
 		content: 'What is your favorite color?'
 	}];
+	this.countries = [{	id: 1, content: 'Hong Kong'	}, { id: 2,	content: 'China' }];
+	this.ownerIdTypes = [{ id: 1, content: 'Government ID' }, { id: 2, content: 'Other ID' }]
+
 	this.securityQuestion = this.securityQuestions[0];
+	this.business = {
+		country: this.countries[0]
+	}
+	this.profile = {
+		country: this.countries[0],
+		ownerIdType: this.ownerIdTypes[0]
+	}
+	// this.businessCountry = this.countries[0];
+	// this.profileCountry = this.countries[0];
 
 	function signup() {
+
+		return $state.go('signup-step-2');
+
+		///////
 
 		if(_.isEmpty(this.email) || _.isEmpty(this.password) || _.isEmpty(this.confirmPassword) || _.isEmpty(this.securityAnswer)) {
 			return showInvalidPopup();
@@ -43,6 +61,39 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 			// return showSuccessPopup();
 			return $state.go('signup-step-2');
 		})
+
+	}
+
+	function registerBusiness() {
+
+		console.log('IN BUSINESS')
+
+		console.log(this.business);
+
+		// storeName, ownerName, established, licenseNumber, line1, line2, city, state, postalCode, country
+
+		// insert business
+		// insert address, licenseNumber
+
+		// update user 
+		// insert businessId 
+
+		// insert shop
+		// insert name, ownerName, address, businessId
+
+	}
+
+	function createProfile() {
+
+		console.log('IN PROFILE')
+		console.log(this.profile)
+		// country, name(3), gender, salutation, DOB, mobile, address, owner id proof
+
+		// update business
+		// insert ownerId information
+
+		// update user 
+		// insert profile with country, name(3), gender, salutation, DOB, mobile, address,
 
 	}
 

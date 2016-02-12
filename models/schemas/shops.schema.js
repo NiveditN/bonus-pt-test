@@ -16,55 +16,55 @@ Schemas.Shops = new SimpleSchema({
 	address: {
 		type: Object
 	},
-	'address.state': {
-		type: String,
-		optional: true
-	},
-	'address.city': {
-		type: String,
-		optional: true
-	},
-	'address.line1': {
-		type: String,
-		optional: true
-	},
-	'address.line2': {
-		type: String,
-		optional: true
-	},
-	'address.postalCode': {
-		type: String,
-		optional: true
-	},
-	'address.country': {
-		type: String,
-		optional: true
-	},
-	'address.countryCode': {
-		type: String,
-		optional: true
-	},
+		'address.state': {
+			type: String,
+			optional: true
+		},
+		'address.city': {
+			type: String,
+			optional: true
+		},
+		'address.line1': {
+			type: String,
+			optional: true
+		},
+		'address.line2': {
+			type: String,
+			optional: true
+		},
+		'address.postalCode': {
+			type: String,
+			optional: true
+		},
+		'address.country': {
+			type: String,
+			optional: true
+		},
+		'address.countryCode': {
+			type: String,
+			optional: true
+		},
 
-	'address.stateLocal': {
-		type: String,
-		optional: true
-	},
-	'address.cityLocal': {
-		type: String,
-		optional: true
-	},
-	'address.countryLocal': {
-		type: String,
-		optional: true
-	},
-	'address.line1Local': {
-		type: String,
-		optional: true
-	},
-	'address.line2Local':{
-		type: String,
-		optional: true		
-	},
+		'address.stateLocal': {
+			type: String,
+			optional: true
+		},
+		'address.cityLocal': {
+			type: String,
+			optional: true
+		},
+		'address.countryLocal': {
+			type: String,
+			optional: true
+		},
+		'address.line1Local': {
+			type: String,
+			optional: true
+		},
+		'address.line2Local':{
+			type: String,
+			optional: true		
+		},
 
 	status: {
 		type: String,
