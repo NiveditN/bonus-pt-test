@@ -1,5 +1,3 @@
-var Schemas = {};
-
 Schemas.Users = new SimpleSchema({
     username: {
         type: String,

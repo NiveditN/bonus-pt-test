@@ -9,6 +9,11 @@ UsersSeed = [
                 'lastName': 'Doe'
             },
             'userType': 'Test',
+            'securityQuestion': {
+                id: 1,
+                content: 'Which street did you grow up on?'
+            },
+            'securityAnswer': 'elm'
         },
         'password': 'test@123'
     }];
