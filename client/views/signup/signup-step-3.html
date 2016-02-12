@@ -21,7 +21,7 @@
 						Your Personal Details
 					</div>
 
-					<div class="list">
+					<div class="list" ng-init="signup.setProfileData(signup.profile)">
 						
 						<!-- country -->
 						<label class="item item-input item-select">
@@ -106,7 +106,7 @@
 							<div class="input-label">
 								ID Type
 							</div>
-							<select ng-options="item.content for item in signup.ownerIdTypes track by item.id" ng-model="signup.profile.ownerIdType"></select>
+							<select ng-options="item.name for item in signup.ownerIdTypes track by item.id" ng-model="signup.profile.ownerIdType"></select>
 						</label>
 
 						<div class="item item-divider"> 

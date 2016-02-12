@@ -6,6 +6,7 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	this.signup = signup;
 	this.registerBusiness = registerBusiness;
 	this.createProfile = createProfile;
+	this.setProfileData = setProfileData;
 	
 	this.securityQuestions = [{
 		id: 1,
@@ -69,27 +70,21 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 		console.log('IN BUSINESS');
 		console.log(this.business);
 
-		// storeName, ownerName, established, licenseNumber, line1, line2, city, state, postalCode, country
-
-		// insert business
-		// insert established, address, licenseNumber
 		Meteor.call('registerBusiness', this.business, function(err, res) {
 			if(err) {
 				return console.log('Error', err);
 			}
-
-			// update user 
-			// insert businessId 
-			// var this.businessId = res;
-
-			// Meteor.call('registerBusinessId', this.businessId, function(err, res) {
-
-			// })
-
-			// Meteor.call('updateUserProfile')
-
-			return console.log('Success', res);
+			console.log('Success', res);
+			return $state.go('signup-step-3');
 		});
+
+		// storeName, ownerName, established, licenseNumber, line1, line2, city, state, postalCode, country
+
+		// insert business
+		// insert established, address, licenseNumber
+
+		// update user 
+		// insert businessId 
 
 		// insert shop
 		// insert name, ownerName, address, businessId
@@ -100,14 +95,50 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 		console.log('IN PROFILE')
 		console.log(this.profile)
-		// country, name(3), gender, salutation, DOB, mobile, address, owner id proof
 
-		// update business
-		// insert ownerId information
+		Meteor.call('createProfile', this.profile, function(err, res) {
+			if(err) {
+				return console.log('Error', err);
+			}
+			console.log('Success', res);
+			return $state.go('dashboard');
+		});
+
+		// country, name(3), gender, salutation, DOB, mobile, address, owner id proof
 
 		// update user 
 		// insert profile with country, name(3), gender, salutation, DOB, mobile, address,
 
+		// update business
+		// insert ownerId information
+
+	}
+
+	function setProfileData(profile) {
+		console.log('setting profile data');
+
+		Meteor.call('getBusiness', Meteor.user().profile.businessId, function(err, res) {
+			if(err) {
+				return console.log('Error', err);
+			}
+			console.log('Success', res);
+			var fetchedAddress = res.address;
+			// console.log(this.profile);
+			// this.profile.line1 = fetchedAddress.line1;
+			// this.profile.line2 = fetchedAddress.line2;
+			// this.profile.city = fetchedAddress.city;
+			// this.profile.state = fetchedAddress.state;
+			// this.profile.postalCode = fetchedAddress.postalCode;
+			// this.profile.country.name = fetchedAddress.country;
+			console.log(profile);
+			profile.line1 = fetchedAddress.line1;
+			profile.line2 = fetchedAddress.line2;
+			profile.city = fetchedAddress.city;
+			profile.state = fetchedAddress.state;
+			profile.postalCode = fetchedAddress.postalCode;
+			profile.country.name = fetchedAddress.country;
+
+		})
 	}
 
 	function showInvalidPopup() {

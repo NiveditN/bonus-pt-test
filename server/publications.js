@@ -26,3 +26,11 @@ Meteor.publishComposite('chats', function () {
     ]
   };
 });*/
+
+Meteor.publish('users', function () {
+  return Meteor.users.find({}, { fields: { profile: 1 } });
+});
+
+Meteor.publish('businesses', function () {
+  return Businesses.find({});
+});

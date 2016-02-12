@@ -41,10 +41,54 @@ Meteor.methods({
         }
         console.log('CREATING PROFILE');
         console.log(profileData);
+        
+        // update user 
+        // insert profile with country, name(3), gender, salutation, DOB, mobile, address,
+
+        return Meteor.users.update({_id: this.userId}, { $set: profileData }, function(err, result) {
+
+            // update business
+            // insert ownerId information
+
+            console.log('Updated user profile');
+            console.log(result);
+            data.businessId = Meteor.user().profile.businessId;
+            console.log('Found user businessId');
+            console.log(data.businessId);
+
+            Meteor.call('registerOwnerId', data, function(err, result) {
+                if(err) {
+                    return err;
+                }
+            });
+
+        });
+    },
+
+    'createProfileOld': function(data) {
+        var profileData = {
+            'profile.name.salutation': data.salutation,
+            'profile.name.firstName': data.firstName,
+            'profile.name.middleName': data.middleName,
+            'profile.name.lastName': data.lastName,
+            'profile.gender': data.gender,
+            'profile.dateOfBirth': data.dateOfBirth,
+            'profile.mobile': data.mobile,
+            'profile.address': {
+                line1: data.line1,
+                line2: data.line2,
+                city: data.city,
+                state: data.state,
+                postalCode: data.postalCode,
+                country: data.country.name
+            }
+        }
+        console.log('CREATING PROFILE');
+        console.log(profileData);
         return Meteor.users.update({_id: this.userId},
             { $set: profileData });
     },
-    
+
 
     'updateUser': function(userData){
       return  Meteor.users.update({_id: this.userId },

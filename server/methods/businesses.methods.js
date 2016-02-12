@@ -1,5 +1,10 @@
 Meteor.methods({
 
+    'getBusiness': function (data) {
+        console.log(data)
+        return Businesses.findOne({_id: data });
+    },
+
     'registerBusiness': function (data) {
         var businessId;
         var businessData = {
