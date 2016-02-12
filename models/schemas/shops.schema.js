@@ -1,70 +1,15 @@
-Schemas.Businesses = new SimpleSchema({
+Schemas.Shops = new SimpleSchema({
 
-	ownerId: {
-		type: Object
-	},
-	'ownerId.effectiveFrom': {
-		type: Date,
-		optional: true
-	},
-	'ownerId.effectiveTo': {
-		type: Date,
-		optional: true
-	},
-	'ownerId.image1': {
+	name: {
 		type: String,
 		optional: true
 	},
-	'ownerId.image2': {
+	ownerName: {
 		type: String,
 		optional: true
 	},
-	'ownerId.type': {
-		type: Object
-	},
-	'ownerId.type.typeId': {
+	businessId: {
 		type: String,
-		optional: true
-	},
-	'ownerId.type.typeName': {
-		type: String,
-		optional: true
-	},
-
-	businessLicense: {
-		type: Object
-	},
-	'businessLicense.number': {
-		type: String,
-		optional: true
-	},
-	'businessLicense.effectiveFrom': {
-		type: Date,
-		optional: true
-	},
-	'businessLicense.effectiveTo':{
-		type: Date,
-		optional: true
-	},
-	'businessLicense.image': {
-		type: String,
-		optional: true
-	},
-	
-	balance: {
-		type: String,
-		optional: true
-	},
-	subscription: {
-		type: Object,
-		optional: true
-	},
-	'subscription.startDate': {
-		type: Date,
-		optional: true
-	},
-	'subscription.endDate': {
-		type: Date,
 		optional: true
 	},
 
@@ -135,4 +80,4 @@ Schemas.Businesses = new SimpleSchema({
 	}
 });
 
-Businesses.attachSchema(Schemas.Businesses);
+Shops.attachSchema(Schemas.Shops);
