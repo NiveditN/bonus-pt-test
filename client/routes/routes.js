@@ -26,54 +26,6 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/dashboard',
       templateUrl: 'client/views/dashboard/dashboard.html'
     })
-    // .state('login', {
-    //   url: '/login',
-    //   templateUrl: 'client/templates/login/login.html' //,
-    //   // controller: 'LoginCtrl as logger'
-    // })
-    /*.state('login', {
-      url: '/login',
-      templateUrl: 'client/templates/login/login.html',
-      controller: 'AuthCtrl as auth'
-    })
-    .state('signup', {
-      url: '/signup',
-      templateUrl: 'client/templates/login/signup-step-1.html',
-      controller: 'AuthCtrl as auth'
-    })
-    .state('signup-step-2', {
-      url: '/signup/step-2',
-      templateUrl: 'client/templates/login/signup-step-2.html'
-    })
-    .state('signup-step-3', {
-      url: '/signup/step-3',
-      templateUrl: 'client/templates/login/signup-step-3.html'
-    })*/
-    /*.state('signup', {
-      url: '/signup',
-      abstract: true
-      // ,
-      // templateUrl: 'client/templates/login/signup-step-1.html'
-    })
-    .state('signup.step1', {
-      url: '/step-1',
-      views: {
-        'step1': {
-          templateUrl: 'client/templates/login/signup-step-1.html'
-          // ,
-          // controller: 'ChatsCtrl as chats'
-        }
-      }
-      // templateUrl: 'client/templates/login/signup-step-1.html'
-    })
-    .state('signup.step2', {
-      url: '/step-2',
-      templateUrl: 'client/templates/login/signup-step-2.html'
-    })
-    .state('signup.step3', {
-      url: '/step-3',
-      templateUrl: 'client/templates/login/signup-step-3.html'
-    })*/
     /*.state('tab', {
       url: '/tab',
       abstract: true,
@@ -102,11 +54,6 @@ function config($stateProvider, $urlRouterProvider) {
           controller: 'ChatCtrl as chat'
         }
       }
-    })
-    .state('login', {
-      url: '/login',
-      templateUrl: 'client/templates/login.html',
-      controller: 'LoginCtrl as logger'
     })
     .state('confirmation', {
       url: '/confirmation/:phone',

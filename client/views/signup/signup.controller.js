@@ -4,10 +4,7 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	$reactive(this).attach($scope);
 
 	this.signup = signup;
-	this.showInvalidPopup = showInvalidPopup;
-	this.showErrorPopup = showErrorPopup;
-	this.showSuccessPopup = showSuccessPopup;
-
+	
 	this.securityQuestions = [{
 		id: 1,
 		content: 'Which street did you grow up on?'
@@ -19,16 +16,14 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 	function signup() {
 
-		// console.log(this.securityQuestion);
-
 		if(_.isEmpty(this.email) || _.isEmpty(this.password) || _.isEmpty(this.confirmPassword) || _.isEmpty(this.securityAnswer)) {
-			return this.showInvalidPopup();
+			return showInvalidPopup();
 		}
 		if(this.password !== this.confirmPassword) {
-			return this.showInvalidPopup();
+			return showInvalidPopup();
 		}
 		if(!this.terms) {
-			return this.showInvalidPopup();
+			return showInvalidPopup();
 		}
 
 		Accounts.createUser({
@@ -43,11 +38,10 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 			}
 		}, function(err, res) {
 			if(err) {
-				// return this.showErrorPopup(err);
-				return;
+				return showErrorPopup();
 			}
-			// return this.showSuccessPopup();
-			return showSuccessPopup()
+			// return showSuccessPopup();
+			return $state.go('signup-step-2');
 		})
 
 	}

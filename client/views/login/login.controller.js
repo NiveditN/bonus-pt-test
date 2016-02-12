@@ -4,21 +4,22 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 	$reactive(this).attach($scope);
 
 	this.login = login;
-	this.showInvalidPopup = showInvalidPopup;
-	this.showSuccessPopup = showSuccessPopup;
-	this.showErrorPopup = showErrorPopup;
 
 	function login() {
 		if(_.isEmpty(this.email) || _.isEmpty(this.password)) {
-			return this.showInvalidPopup();
+			return showInvalidPopup();
 		} else {
 			Meteor.loginWithPassword(this.email, this.password, function(err, res) { 
 				if(err) {
-					// this.showErrorPopup(err);
-					return console.log('Error', err);
+					console.log('Error', err);
+					if (!(typeof err !== undefined && err)) {
+						err = 'Incorrect email or password.';
+					}
+					return showErrorPopup(err.reason);					
 				}
-				// this.showSuccessPopup();
-				return console.log('Success', res);
+				console.log('Success', res);
+				// return showSuccessPopup();
+				return $state.go('dashboard');				
 			});
 		}
 	}
