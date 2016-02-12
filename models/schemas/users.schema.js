@@ -168,6 +168,10 @@ Schemas.Users = new SimpleSchema({
 				type: String,
 				optional: true		
 			},
+		'profile.activated': {
+			type: Boolean,
+			optional: true
+		},
 
 	services: { 
 		type: Object, 

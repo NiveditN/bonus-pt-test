@@ -8,25 +8,42 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: 'client/views/login/login.html',
       controller: 'LoginCtrl as logger'
+      // resolve: {
+      //   user: isNotUser
+      // }
     })
     .state('signup', {
       url: '/signup',
       templateUrl: 'client/views/signup/signup-step-1.html',
       controller: 'SignupCtrl as signup'
+      // resolve: {
+      //   user: isNotUser
+      // }
     })
     .state('signup-step-2', {
       url: '/signup/step-2',
       templateUrl: 'client/views/signup/signup-step-2.html',
-      controller: 'SignupCtrl as signup'
+      controller: 'SignupCtrl as signup',
+      resolve: {
+        user: isAuthorized, 
+        active: isInactive
+      }
     })
     .state('signup-step-3', {
       url: '/signup/step-3',
       templateUrl: 'client/views/signup/signup-step-3.html',
-      controller: 'SignupCtrl as signup'
+      controller: 'SignupCtrl as signup',
+      resolve: {
+        user: isAuthorized, 
+        active: isInactive
+      }
     })
     .state('dashboard', {
       url: '/dashboard',
-      templateUrl: 'client/views/dashboard/dashboard.html'
+      templateUrl: 'client/views/dashboard/dashboard.html',
+      resolve: {
+        user: isAuthorized
+      }
     })
     /*.state('tab', {
       url: '/tab',
@@ -84,7 +101,7 @@ function config($stateProvider, $urlRouterProvider) {
 
   ////////////
 
-  /*function isAuthorized($q) {
+  function isAuthorized($q) {
     let deferred = $q.defer();
 
     if (_.isEmpty(Meteor.user()))
@@ -93,5 +110,26 @@ function config($stateProvider, $urlRouterProvider) {
       deferred.resolve();
 
     return deferred.promise;
-  }*/
+  }
+
+  function isInactive($q) {
+    let deferred = $q.defer();
+
+    if (Meteor.user().profile.activated)
+      deferred.reject('ALREADY_ACTIVE_USER');
+    else
+      deferred.resolve();
+
+    return deferred.promise;
+  }
+
+  function isNotUser($q) {
+    if (_.isEmpty(Meteor.user()))
+      deferred.resolve();
+    else
+      deferred.reject('USER_IS_LOGGED_IN');      
+
+    return deferred.promise;
+  }
+
 }
