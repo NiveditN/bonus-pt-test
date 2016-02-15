@@ -1,4 +1,5 @@
 Meteor.methods({
+
     'registerShop': function (data) {
         var shopData = {
             name: data.storeName,
@@ -16,5 +17,6 @@ Meteor.methods({
         console.log('REGISTERING SHOP');
         console.log(shopData);
         return Shops.insert(shopData);
-    }
+    },
+    
 });

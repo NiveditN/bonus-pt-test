@@ -98,11 +98,9 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	function setProfileData(profile) {
 		console.log('setting profile data');
 
-		// Meteor.call('getBusiness', Meteor.user().profile.businessId, function(err, res) {
 		Meteor.call('getBusinessAddress', function(err, res) {
 			if(err) {
 				return console.log('Error setting address', err);
-				// showErrorPopup(err, 'Something went wrong');
 			}
 			console.log('Success', res);
 			console.log(profile);

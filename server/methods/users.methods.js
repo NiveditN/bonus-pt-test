@@ -21,6 +21,7 @@ Meteor.methods({
 
     'createProfile': function(data) {
 
+        var userBusinessId = Meteor.user().profile.businessId;
         var profileData = {
             'profile.name.salutation': data.salutation.name,
             'profile.name.firstName': data.firstName,
@@ -40,14 +41,15 @@ Meteor.methods({
             'profile.activated': true
         }
         console.log('CREATING PROFILE');
-        console.log(profileData);
-        
+        console.log(profileData);        
+
         // (1) update user --- insert profile with country, name, gender, salutation, DOB, mobile, address
-        return Meteor.users.update({ _id: this.userId }, { $set: profileData }, function(err, result) {
+        Meteor.call('updateUserProfile', this.userId, profileData, function(err, result) {
             
             console.log('Updated user profile');
             console.log(result);
-            data.businessId = Meteor.user().profile.businessId;
+
+            data.businessId = userBusinessId;
             console.log('Found user businessId');
             console.log(data.businessId);
 
@@ -56,6 +58,7 @@ Meteor.methods({
                 if(err) {
                     return err;
                 }
+                return result;
             });
 
         });
@@ -75,7 +78,7 @@ Meteor.methods({
     },
 
     'updateUserProfile': function(userId, userData) {
-        return Meteor.users.update({_id: userId},{$set: userData});
+        return Meteor.users.update({_id: userId },{ $set: userData });
     },
 
 });

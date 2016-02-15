@@ -19,7 +19,6 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 				}
 				console.log('Success', res);
 				console.log(Meteor.user());
-				// return showSuccessPopup();
 				return $state.go('dashboard');				
 			});
 		}
@@ -32,7 +31,7 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 			cssClass: 'text-center'
 		});
 		invalidPopup.then((res) => {
-			console.log('Compliance will be rewarded.');
+			console.log('Invalid pop-up closed');
 		});
 	}
 
@@ -43,7 +42,7 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 			cssClass: 'text-center'
 		});
 		successPopup.then((res) => {
-			console.log('Compliance will be rewarded.');
+			console.log('Success pop-up closed.');
 		});
 	}
 
@@ -54,7 +53,7 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 			cssClass: 'text-center'
 		});
 		errorPopup.then((res) => {
-			console.log('Compliance will be rewarded.');
+			console.log('Error pop-up closed.');
 		});
 	}
 

@@ -20,6 +20,10 @@ Meteor.methods({
             { $set: ownerIdData });
     },
 
+    'insertBusiness': function (data) {
+        return Businesses.insert(data);
+    },
+
     'registerBusiness': function (data) {
         var businessId;
 
@@ -42,7 +46,7 @@ Meteor.methods({
         console.log(businessData);
 
         // (1) insert business --- insert established, address, licenseNumber
-        return Businesses.insert(businessData, function(err, result) {
+        Meteor.call('insertBusiness', businessData, function(err, result) {
             if(err) {
                 return err;
             }
@@ -63,7 +67,8 @@ Meteor.methods({
                         return err;
                     }
                     console.log('Inserted shop')
-                    console.log(result);                    
+                    console.log(result); 
+                    return result;                    
                 });
             });
         });

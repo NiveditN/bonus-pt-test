@@ -26,9 +26,6 @@ function config($stateProvider, $urlRouterProvider) {
       controller: 'SignupCtrl as signup',
       resolve: {
         user: registrationStepTwo
-        // user: isNewRegistration
-        // user: isAuthorized, 
-        // active: isInactive
       }
     })
     .state('signup-step-3', {
@@ -37,16 +34,7 @@ function config($stateProvider, $urlRouterProvider) {
       controller: 'SignupCtrl as signup',
       resolve: {
         user: registrationStepThree
-        // user: isNewRegistration
-        // user: isAuthorized, 
-        // active: isInactive
       }
-    })
-    .state('home', {
-      url: '/home',
-      abstract: true,
-      // templateUrl: 'client/views/dashboard/dashboard.html',
-      // controller: 'HomeCtrl as home'
     })
     .state('dashboard', {
       url: '/dashboard',
@@ -113,7 +101,6 @@ function config($stateProvider, $urlRouterProvider) {
 
   function isAuthorized($q) {
     let deferred = $q.defer();
-
     if (_.isEmpty(Meteor.user()))
       deferred.reject('AUTH_REQUIRED');
     else if (!Meteor.user().profile.activated) {
@@ -124,50 +111,24 @@ function config($stateProvider, $urlRouterProvider) {
     }
     else
       deferred.resolve();
-
-    return deferred.promise;
-  }
-
-  function isNewRegistration($q) {
-    let deferred = $q.defer();
-
-    if (_.isEmpty(Meteor.user()))
-      deferred.reject('AUTH_REQUIRED');
-    else if (Meteor.user().profile.activated)
-      deferred.reject('ALREADY_ACTIVE_USER');
-    else if (!Meteor.user().profile.activated) {
-      if(!Meteor.user().profile.businessRegistered) 
-        deferred.reject('NEW_REGISTRATION_STEP_2');
-      else
-        deferred.reject('NEW_REGISTRATION_STEP_3');
-    }
-    else
-      deferred.resolve();
-
     return deferred.promise;
   }
 
   function registrationStepTwo($q) {
     let deferred = $q.defer();
-
-    console.log('here')
-
     if (_.isEmpty(Meteor.user()))
       deferred.reject('AUTH_REQUIRED');
     else if (Meteor.user().profile.activated)
       deferred.reject('ALREADY_ACTIVE_USER');
-    else if(Meteor.user().profile.businessRegistered) {
-      console.log('here 2')
+    else if(Meteor.user().profile.businessRegistered)
       deferred.reject('NEW_REGISTRATION_STEP_3');
-    } else
+    else
       deferred.resolve();
-
     return deferred.promise;
   }
 
   function registrationStepThree($q) {
     let deferred = $q.defer();
-
     if (_.isEmpty(Meteor.user()))
       deferred.reject('AUTH_REQUIRED');
     else if (Meteor.user().profile.activated)
@@ -176,41 +137,16 @@ function config($stateProvider, $urlRouterProvider) {
       deferred.reject('NEW_REGISTRATION_STEP_2');
     else
       deferred.resolve();
-
     return deferred.promise;
   }  
 
   function isNotUser($q) {
     let deferred = $q.defer();
-
     if (_.isEmpty(Meteor.user()))
       deferred.resolve();
     else
       deferred.reject('USER_IS_LOGGED_IN');      
-
     return deferred.promise;
   }
-
-  // function isAuthorized($q) {
-  //   let deferred = $q.defer();
-
-  //   if (_.isEmpty(Meteor.user()))
-  //     deferred.reject('AUTH_REQUIRED');
-  //   else
-  //     deferred.resolve();
-
-  //   return deferred.promise;
-  // }
-
-  // function isInactive($q) {
-  //   let deferred = $q.defer();
-
-  //   if (Meteor.user().profile.activated)
-  //     deferred.reject('ALREADY_ACTIVE_USER');
-  //   else
-  //     deferred.resolve();
-
-  //   return deferred.promise;
-  // }
 
 }
