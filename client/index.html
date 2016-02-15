@@ -11,6 +11,13 @@
 <ion-nav-bar class="bar-stable">
   <ion-nav-back-button>
   </ion-nav-back-button>
+  <div ng-if="!_.isEmpty(Meteor.user())">
+	<ion-nav-buttons side="secondary">
+		<button class="button" ng-click="Meteor.logout()">
+			Logout
+		</button>
+	</ion-nav-buttons>
+  </div>
 </ion-nav-bar>
 <!--
   The views will be rendered in the <ion-nav-view> directive below

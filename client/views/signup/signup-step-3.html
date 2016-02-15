@@ -56,9 +56,16 @@
 							</div>
 						</div>
 
-						<label class="item item-input">
-							<span class="input-label">Salutation</span>
-							<input type="text" ng-model="signup.profile.salutation" placeholder="Salutation">
+						<!-- <label class="item item-input"> -->
+							<!-- <span class="input-label">Salutation</span> -->
+							<!-- <input type="text" ng-model="signup.profile.salutation" placeholder="Salutation"> -->
+						<!-- </label> -->
+
+						<label class="item item-input item-select">
+							<div class="input-label">
+								Salutation
+							</div>
+							<select ng-options="item.name for item in signup.salutations track by item.id" ng-model="signup.profile.salutation"></select>
 						</label>
 						<!-- </ion-list> -->
 
@@ -69,7 +76,7 @@
 
 						<label class="item item-input">
 							<span class="input-label">Mobile Number</span>
-							<input type="tel" ng-model="signup.profile.mobile" placeholder="Mobile Number">
+							<input type="number" ng-model="signup.profile.mobile" placeholder="Mobile Number">
 						</label>
 
 						<div class="item item-divider"> 

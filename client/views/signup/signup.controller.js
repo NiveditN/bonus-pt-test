@@ -16,7 +16,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 		content: 'What is your favorite color?'
 	}];
 	this.countries = [{	id: 1, name: 'Hong Kong' }, { id: 2, name: 'China' }];
-	this.ownerIdTypes = [{ id: 1, name: 'Government ID' }, { id: 2, name: 'Other ID' }]
+	this.ownerIdTypes = [{ id: 1, name: 'Government ID' }, { id: 2, name: 'Other ID' }];
+	this.salutations = [{ id: 1, name: 'Mr.' }, { id: 2, name: 'Ms.' }, { id: 3, name: 'Mrs.' }];
 
 	this.securityQuestion = this.securityQuestions[0];
 	this.business = {
@@ -24,12 +25,13 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	}
 	this.profile = {
 		country: this.countries[0],
-		ownerIdType: this.ownerIdTypes[0]
+		ownerIdType: this.ownerIdTypes[0],
+		salutation: this.salutations[0]
 	}
 
 	function signup() {
 
-		if(_.isEmpty(this.email) || _.isEmpty(this.password) || _.isEmpty(this.confirmPassword) || _.isEmpty(this.securityAnswer)) {
+		if(_.isEmpty(this.email) || _.isEmpty(this.password) || _.isEmpty(this.confirmPassword)) {
 			return showInvalidPopup();
 		}
 		if(this.password !== this.confirmPassword) {
@@ -41,14 +43,14 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 		var userData = {
 			email: this.email,
-			password: this.password //,
-			// profile: {
+			password: this.password,
+			profile: {
 			// 	securityQuestion: {
 			// 		id: this.securityQuestion.id,
 			// 		content: this.securityQuestion.content
 			// 	},
 			// 	securityAnswer: this.securityAnswer
-			// }
+			}
 		}
 		console.log(userData)
 
@@ -57,6 +59,7 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 				console.log('signup failed', err);
 				return showErrorPopup(err, 'Something went wrong');
 			}
+			console.log('User created', Meteor.user());
 			return $state.go('signup-step-2');
 		});
 
@@ -71,7 +74,7 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 				console.log('Error', err);
 				return showErrorPopup(err, 'Something went wrong');
 			}
-			console.log('Success', res);
+			console.log('Success', res, Meteor.user());
 			return $state.go('signup-step-3');
 		});
 	}
@@ -95,7 +98,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 	function setProfileData(profile) {
 		console.log('setting profile data');
 
-		Meteor.call('getBusiness', Meteor.user().profile.businessId, function(err, res) {
+		// Meteor.call('getBusiness', Meteor.user().profile.businessId, function(err, res) {
+		Meteor.call('getBusinessAddress', function(err, res) {
 			if(err) {
 				return console.log('Error setting address', err);
 				// showErrorPopup(err, 'Something went wrong');
@@ -126,8 +130,8 @@ function SignupCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log)
 
 	function showSuccessPopup() {
 		var successPopup = $ionicPopup.alert({
-			title: "Registration complete!",
-			template: '<div>Go to dashboard?</div>',
+			title: "Registration complete",
+			template: '<div>Welcome to BonusPoint!</div>',
 			cssClass: 'text-center'
 		});
 		successPopup.then((res) => {

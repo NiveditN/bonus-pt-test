@@ -7,26 +7,28 @@ function config($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'client/views/login/login.html',
-      controller: 'LoginCtrl as logger'
-      // resolve: {
-      //   user: isNotUser
-      // }
+      controller: 'LoginCtrl as logger',
+      resolve: {
+        user: isNotUser
+      }
     })
     .state('signup', {
       url: '/signup',
       templateUrl: 'client/views/signup/signup-step-1.html',
-      controller: 'SignupCtrl as signup'
-      // resolve: {
-      //   user: isNotUser
-      // }
+      controller: 'SignupCtrl as signup',
+      resolve: {
+        user: isNotUser
+      }
     })
     .state('signup-step-2', {
       url: '/signup/step-2',
       templateUrl: 'client/views/signup/signup-step-2.html',
       controller: 'SignupCtrl as signup',
       resolve: {
-        user: isAuthorized, 
-        active: isInactive
+        user: registrationStepTwo
+        // user: isNewRegistration
+        // user: isAuthorized, 
+        // active: isInactive
       }
     })
     .state('signup-step-3', {
@@ -34,9 +36,17 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'client/views/signup/signup-step-3.html',
       controller: 'SignupCtrl as signup',
       resolve: {
-        user: isAuthorized, 
-        active: isInactive
+        user: registrationStepThree
+        // user: isNewRegistration
+        // user: isAuthorized, 
+        // active: isInactive
       }
+    })
+    .state('home', {
+      url: '/home',
+      abstract: true,
+      // templateUrl: 'client/views/dashboard/dashboard.html',
+      // controller: 'HomeCtrl as home'
     })
     .state('dashboard', {
       url: '/dashboard',
@@ -97,7 +107,7 @@ function config($stateProvider, $urlRouterProvider) {
       }
     });*/
 
-  $urlRouterProvider.otherwise('login');
+  $urlRouterProvider.otherwise('dashboard');
 
   ////////////
 
@@ -106,24 +116,73 @@ function config($stateProvider, $urlRouterProvider) {
 
     if (_.isEmpty(Meteor.user()))
       deferred.reject('AUTH_REQUIRED');
+    else if (!Meteor.user().profile.activated) {
+      if(!Meteor.user().profile.businessRegistered)
+        deferred.reject('NEW_REGISTRATION_STEP_2');
+      else
+        deferred.reject('NEW_REGISTRATION_STEP_3');
+    }
     else
       deferred.resolve();
 
     return deferred.promise;
   }
 
-  function isInactive($q) {
+  function isNewRegistration($q) {
     let deferred = $q.defer();
 
-    if (Meteor.user().profile.activated)
+    if (_.isEmpty(Meteor.user()))
+      deferred.reject('AUTH_REQUIRED');
+    else if (Meteor.user().profile.activated)
       deferred.reject('ALREADY_ACTIVE_USER');
+    else if (!Meteor.user().profile.activated) {
+      if(!Meteor.user().profile.businessRegistered) 
+        deferred.reject('NEW_REGISTRATION_STEP_2');
+      else
+        deferred.reject('NEW_REGISTRATION_STEP_3');
+    }
     else
       deferred.resolve();
 
     return deferred.promise;
   }
 
+  function registrationStepTwo($q) {
+    let deferred = $q.defer();
+
+    console.log('here')
+
+    if (_.isEmpty(Meteor.user()))
+      deferred.reject('AUTH_REQUIRED');
+    else if (Meteor.user().profile.activated)
+      deferred.reject('ALREADY_ACTIVE_USER');
+    else if(Meteor.user().profile.businessRegistered) {
+      console.log('here 2')
+      deferred.reject('NEW_REGISTRATION_STEP_3');
+    } else
+      deferred.resolve();
+
+    return deferred.promise;
+  }
+
+  function registrationStepThree($q) {
+    let deferred = $q.defer();
+
+    if (_.isEmpty(Meteor.user()))
+      deferred.reject('AUTH_REQUIRED');
+    else if (Meteor.user().profile.activated)
+      deferred.reject('ALREADY_ACTIVE_USER');
+    else if(!Meteor.user().profile.businessRegistered)
+      deferred.reject('NEW_REGISTRATION_STEP_2');
+    else
+      deferred.resolve();
+
+    return deferred.promise;
+  }  
+
   function isNotUser($q) {
+    let deferred = $q.defer();
+
     if (_.isEmpty(Meteor.user()))
       deferred.resolve();
     else
@@ -131,5 +190,27 @@ function config($stateProvider, $urlRouterProvider) {
 
     return deferred.promise;
   }
+
+  // function isAuthorized($q) {
+  //   let deferred = $q.defer();
+
+  //   if (_.isEmpty(Meteor.user()))
+  //     deferred.reject('AUTH_REQUIRED');
+  //   else
+  //     deferred.resolve();
+
+  //   return deferred.promise;
+  // }
+
+  // function isInactive($q) {
+  //   let deferred = $q.defer();
+
+  //   if (Meteor.user().profile.activated)
+  //     deferred.reject('ALREADY_ACTIVE_USER');
+  //   else
+  //     deferred.resolve();
+
+  //   return deferred.promise;
+  // }
 
 }

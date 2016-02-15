@@ -167,9 +167,18 @@ Schemas.Users = new SimpleSchema({
 				type: String,
 				optional: true		
 			},
+		
+		'profile.verified': {
+			type: Boolean,
+			optional: true,
+		},
+		'profile.businessRegistered': {
+			type: Boolean,
+			optional: true,
+		},
 		'profile.activated': {
 			type: Boolean,
-			optional: true
+			optional: true,
 		},
 
 	services: { 

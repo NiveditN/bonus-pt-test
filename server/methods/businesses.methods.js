@@ -5,24 +5,8 @@ Meteor.methods({
         return Businesses.findOne({_id: data });
     },
 
-    'createNewBusiness': function (data) {
-        var businessData = {
-            established: data.established,
-            businessLicense: { 
-                number: data.licenseNumber 
-            },
-            address: {
-                line1: data.line1,
-                line2: data.line2,
-                city: data.city,
-                state: data.state,
-                postalCode: data.postalCode,
-                country: data.country.name
-            }
-        }
-        console.log('REGISTERING BUSINESS');
-        console.log(businessData);
-        return Businesses.insert(businessData);
+    getBusinessAddress: function(data) {
+        return Businesses.findOne({ _id: Meteor.user().profile.businessId });
     },
 
     'registerOwnerId': function(data) {
@@ -84,5 +68,5 @@ Meteor.methods({
             });
         });
     },
-    
+
 });
