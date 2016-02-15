@@ -26,7 +26,8 @@ Schemas.Users = new SimpleSchema({
 		optional:true
 	},
     profile: {
-        type: Object
+        type: Object,
+        optional: true
     },
 		'profile.name': {
 			type: Object,
@@ -35,13 +36,6 @@ Schemas.Users = new SimpleSchema({
 			'profile.name.salutation': {
 				type: String,
 				optional: true
-				// autoform: {
-				// 	options: [
-				// 		{ label: "Mr.", value: "Mr." },
-				// 		{ label: "Mrs.", value: "Mrs." },
-				// 		{ label: "Ms.", value: "Ms." },
-				// 	]
-				// }
 			},
 			'profile.name.firstName': {
 				type: String,
@@ -77,16 +71,20 @@ Schemas.Users = new SimpleSchema({
 
 		'profile.securityQuestion': {
 			type: Object,
+			optional: true
 		},
 			'profile.securityQuestion.id': {
 				type: Number,
+				optional: true
 			},
 			'profile.securityQuestion.content': {
 				type: String,
+				optional: true
 			},
 			
 		'profile.securityAnswer': {
-			type: String        
+			type: String,
+			optional: true        
 		},
 
 		'profile.mobile':{
@@ -117,7 +115,8 @@ Schemas.Users = new SimpleSchema({
 		},
 
 		'profile.address': {
-			type: Object
+			type: Object,
+			optional: true
 		},
 			'profile.address.state': {
 				type: String,

@@ -10,18 +10,16 @@
 Meteor.methods({
 
     'registerBusinessId': function(data) {
-        // var userData = {
-        //     'profile.businessId': data.businessId
-        // }
         console.log('REGISTERING BUSINESS ID');
         console.log( data.businessId );
-        return Meteor.users.update({_id: this.userId},
-            {$set: {
+        return Meteor.users.update({ _id: this.userId },
+            { $set: {
                 'profile.businessId': data.businessId
-            }});
+            } });
     },
 
     'createProfile': function(data) {
+
         var profileData = {
             'profile.name.salutation': data.salutation,
             'profile.name.firstName': data.firstName,
@@ -42,20 +40,16 @@ Meteor.methods({
         console.log('CREATING PROFILE');
         console.log(profileData);
         
-        // update user 
-        // insert profile with country, name(3), gender, salutation, DOB, mobile, address,
-
-        return Meteor.users.update({_id: this.userId}, { $set: profileData }, function(err, result) {
-
-            // update business
-            // insert ownerId information
-
+        // (1) update user --- insert profile with country, name, gender, salutation, DOB, mobile, address
+        return Meteor.users.update({ _id: this.userId }, { $set: profileData }, function(err, result) {
+            
             console.log('Updated user profile');
             console.log(result);
             data.businessId = Meteor.user().profile.businessId;
             console.log('Found user businessId');
             console.log(data.businessId);
-
+            
+            // (2) update business --- insert ownerId information
             Meteor.call('registerOwnerId', data, function(err, result) {
                 if(err) {
                     return err;
@@ -65,7 +59,7 @@ Meteor.methods({
         });
     },
 
-    'createProfileOld': function(data) {
+    'updateProfile': function(data) {
         var profileData = {
             'profile.name.salutation': data.salutation,
             'profile.name.firstName': data.firstName,
@@ -89,7 +83,6 @@ Meteor.methods({
             { $set: profileData });
     },
 
-
     'updateUser': function(userData){
       return  Meteor.users.update({_id: this.userId },
             {$set: {
@@ -98,18 +91,22 @@ Meteor.methods({
                 'email' : userData.email
             }});
     },
+
     'createNewUser': function (userData){
         return Accounts.createUser(userData);
     },
+
     'changeUserStatus': function (userId) {
         return Meteor.users.update({_id: userId },
             {
                 $set: {'profile.status.isActive': ! Meteor.users.findOne({_id:userId}).profile.status.isActive  }
             });
     },
+
     'updateUserProfile': function(userId, userData) {
         return Meteor.users.update({_id: userId},{$set: userData});
     },
+
     'updateUserSelectedCountry': function(selectedCountry){
         Meteor.users.update({_id: this.userId },
             {$set: { 
