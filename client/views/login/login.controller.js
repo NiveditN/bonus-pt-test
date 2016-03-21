@@ -1,9 +1,18 @@
 angular.module('bonuspoint').controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) {
+function LoginCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, $ionicPopup, $log) {
 	$reactive(this).attach($scope);
 
 	this.login = login;
+
+	/* Method to verify email: This needs to be on the landing controller */
+	if (Accounts._verifyEmailToken) { 
+		Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) { 
+			if (err != null) { if (err.message == 'Verify email link expired [403]') 
+				{ console.log('This verification link has expired.') } } 
+			else { console.log('You have been verified!') } 
+		});
+	}
 
 	function login() {
 		if(_.isEmpty(this.email) || _.isEmpty(this.password)) {
@@ -12,14 +21,14 @@ function LoginCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log) 
 			Meteor.loginWithPassword(this.email, this.password, function(err, res) { 
 				if(err) {
 					console.log('Error', err);
-					if (!(typeof err !== undefined && err)) {
-						err = 'Incorrect email or password.';
+					if(err.reason === 'Login forbidden') {
+						return showErrorPopup('Please verify your email address.')
 					}
 					return showErrorPopup(err.reason);					
 				}
 				console.log('Success', res);
 				console.log(Meteor.user());
-				return $state.go('dashboard');				
+				return $state.go('root.home.dashboard');				
 			});
 		}
 	}

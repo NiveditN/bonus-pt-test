@@ -18,13 +18,24 @@ driftyco:ionic
 momentjs:moment
 fourseven:scss
 jasonaibrahim:angular-moment
-check
-# okland:accounts-phone
 reywood:publish-composite
 okland:camera-ui
 angular
-sanjo:jasmine
-velocity:html-reporter
 accounts-base
 aldeed:collection2
 accounts-password
+angular-meteor-auth
+email
+
+check
+# okland:accounts-phone
+# sanjo:jasmine
+# velocity:html-reporter
+
+# urigo:angular-blaze-template
+# hitchcott:qr-scanner
+# netanelgilad:ng-cordova
+cfs:standard-packages
+cfs:gridfs
+danialfarid:ng-file-upload
+mquandalle:bower

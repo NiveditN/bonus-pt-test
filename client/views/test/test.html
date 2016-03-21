@@ -1,0 +1,326 @@
+<ion-view view-title="Test">
+    
+    <!-- <ion-content class="has-subheader" has-bouncing="true"> -->
+    <ion-content class="has-subheader" has-bouncing="false" scroll="true">
+
+    	<div class="card">
+			<div class="item item-text-wrap">
+				This is test view.
+			</div>
+		</div>
+
+		<!-- Screen Orientation -->
+		<div>
+			<div class="item item-divider"> 
+				Screen Orientation
+			</div>
+			<div class="item item-text-wrap">
+				<button class="button button-calm" ng-click="test.getOrientation()">Get Orientation</button>
+				<button class="button button-royal" ng-click="test.unlockOrientation()">Unlock</button>
+			</div>
+			<div class="item item-text-wrap">
+				<button class="button button-balanced" ng-click="test.landscape()">Landscape</button>
+				<button class="button button-assertive" ng-click="test.portrait()">Portrait</button>
+			</div>	
+			<div class="item item-text-wrap">
+				<button class="button button-balanced" ng-click="test.webLandscape()">Web Landscape</button>
+				<button class="button button-assertive" ng-click="test.webPortrait()">Web Portrait</button>
+			</div>			
+		</div>
+
+		<!-- Color Picker -->
+		<div>
+			<div class="item item-divider"> 
+				Color Picker
+			</div>
+			<button class="button" color-picker ng-model="testColors.first" modal-title="Choose a color" color-box="{{testColors.first}}">
+				{{ testColors.first || 'Choose a color' }} 
+			</button>  
+
+			<button class="button" color-picker color-mode="name" ng-model="testColors.first" modal-title="Choose a color" color-box="{{testColors.first}}">
+				{{ testColors.first || 'Choose a color' }} 
+			</button>  
+		</div>
+
+		<!-- Custom File Upload -->
+		<div>
+			<div class="item item-divider"> 
+				Image Uploader
+			</div>
+
+			<div class="item item-text-wrap">
+
+			</div>
+
+			<div class="item item-text-wrap">
+				<div class="row">
+					<div class="col col-100 text-center">
+						<div>{{ selectedFile.name }}</div>
+						<fileupload selected-file="selectedFile"></fileupload>
+						<!-- <fileupload selected-file="xyz"></fileupload> -->
+						<!-- <fileupload selected-file="xyz" get-file="test.new"></fileupload> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="item item-text-wrap">     
+				<div class="row">
+					<div class="col col-100 text-center">
+						<button class="button button-calm" ng-click="test.getFile()"> Get File Name </button> 
+					</div>
+				</div>
+			</div>    
+
+			<!-- !! Doesn't work !! -->
+			<div class="item item-text-wrap">
+			    <label class="item item-input">
+					<span class="input-label">File</span>
+					<input type="file" ng-model="test.file" />			
+				</label>
+				<button class="button" ng-click="test.click()">Click</button>
+				{{test.file}}
+	    	</div>
+	    	<!-- !! Doesn't work !! -->
+
+		    <div class="item item-text-wrap">
+				<my-dialog selected-file="test.example"></my-dialog>
+			</div>
+
+		</div>
+
+		<!-- GridFS -->
+		<div>
+			<div class="item item-divider"> 
+				GridFS
+			</div>
+			<div class="item item-text-wrap">
+				<img ng-src="{{ test.image.url() }}"/><br/>
+				<!-- <div class="" ng-repeat="image in test.images">
+					<img ng-src="{{ image.url() }}"/><br/>
+				</div> -->
+			</div>
+			<div class="item item-text-wrap">
+				<button class="button button-positive" ng-click="test.getImages()"> Get Image </button> 
+			</div>
+		</div>
+
+
+		<!-- Service -->
+		<div>
+			<div class="item item-divider"> 
+				Service
+			</div>
+			<div class="item item-text-wrap">
+				{{test.controllerData}}
+			</div>
+			<div class="item item-text-wrap">
+				{{test.serviceData}}
+			</div>
+			<div class="item item-text-wrap">
+				<button class="button button-positive" ng-click="test.setService()"> Set Service </button> 
+				<button class="button button-royal" ng-click="test.getService()"> Get Service </button> 
+			</div>
+		</div>
+		
+
+		<!-- Directive -->
+		<div>
+			<div class="item item-divider"> 
+				Card Model
+			</div>
+			<div>
+		    	<div class="card">
+					<div class="item item-text-wrap">
+						{{test.card}}
+					</div>
+					<div class="item item-text-wrap">
+						<button class="button button-positive" ng-click="test.getCard()"> Get Card </button> 
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+							
+					</div>				
+				</div>
+			</div>	
+			<div class="item item-divider"> 
+				Card: Simple Information
+			</div>
+			<simple-card-model info="test.card"></simple-card-model>
+			<div class="item item-divider"> 
+				Card: Rendered elements (Back)
+			</div>
+			<!-- <compiled-card-model-back info="test.card"></compiled-card-model-back> -->
+			<div class="item item-divider"> 
+				Card: Rendered elements
+			</div>
+			<!-- <compiled-card-model info="test.card"></compiled-card-model> -->
+		</div>
+		<!-- Directive -->	
+
+
+		<!-- History -->	
+		<div>
+			<div>
+				<div class="item item-divider"> 
+					History: Simple Variable
+				</div>
+				<div class="card">
+					<div class="item item-text-wrap">
+						<h3>Count: {{count}}</h3>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h2>Foo: {{foo}}</h2>
+						</div>
+						<div class="col">
+							<button class="button button-positive" ng-click="changeFoo()"> Foo! </button> 	
+						</div>
+						<div class="col">
+							<button class="button button-assertive" ng-click="undo()"> Undo </button> 	
+						</div>
+						<div class="col">
+							<button class="button button-balanced" ng-click="redo()"> Redo </button> 	
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div class="item item-divider"> 
+					History: Object
+				</div>
+				<div class="card">
+					<div class="item item-text-wrap">
+						<h3>Baz: {{baz}}</h3>
+					</div>
+					<div class="row">
+						<div class="col">
+							<h2>Qux: {{qux.value}}</h2>
+						</div>
+						<div class="col">
+							<div class="col">
+								<h2>Qux: Array</h2>
+							</div>
+							<div ng-repeat="item in qux.array">
+								{{item.id}} - {{item.name}}
+							</div>
+						</div>
+						<div class="col">
+							<button class="button button-positive" ng-click="changeBaz()"> Baz! </button> 	
+						</div>
+						<div class="col">
+							<button class="button button-royal" ng-click="changeArray()"> Push! </button> 	
+						</div>
+						<div class="col">
+							<button class="button button-assertive" ng-click="undo2()"> Undo </button> 	
+						</div>
+						<div class="col">
+							<button class="button button-balanced" ng-click="redo2()"> Redo </button> 	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- History -->	
+
+		<!-- Drag Drop -->	
+		<div>
+			<div class="item item-divider"> 
+				jQuery UI + Touch Punch
+			</div>
+			<div class="card">
+				<div class="drag-canvas">
+					<div id="drag-e-1" class="drag-item">Drag me!</div>
+					<div id="drag-e-2" class="drag-item">Drag me too!</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="item item-text-wrap">
+		        	<button class="button button-calm" ng-click="getData()"> Get Data </button> 	
+		        </div>
+	        </div>
+        </div>
+		<!-- Drag Drop -->	
+
+
+		<div>
+			<div ng-if="false">
+
+				<div class="card">
+					<div class="item item-text-wrap">
+						{{test.scanData}}
+					</div>
+				</div>	
+
+				<div class="images-container-title">
+		            <!-- <div flex>
+		              <h3>Add photos to your party!</h3>
+		                <div ngf-drop ngf-select
+		                     ngf-change="test.addImages($files)"
+		                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+		                     ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*, application/pdf'"
+		                     ngf-drop-available="true">
+		                  <div>Drop Images or PDFs</div>
+		                  <div>
+		                    <strong>OR</strong>
+		                  </div>
+		                  Click here to select files
+		                </div>
+		            </div> -->
+		        </div>
+		  
+		  		<!-- {{test.images}} -->
+			    
+			    {{test.newDate}}
+
+			    <label class="item item-input">
+					<span class="input-label">Date</span>
+					<input type="date" ng-model="test.newDate" />
+				</label>
+
+				<div class="row row-top">
+				</div>
+
+				<div class="row row-center">
+					<div class="col">
+						<div class="row">
+							<div class="col col-50">
+								This is a grid
+							</div>
+						</div>	
+					</div>
+				</div>
+
+				<div class="row row-bottom">
+				</div>
+				
+				<!-- <div class="row row-top">
+				</div>
+
+				<div class="row row-center full-height">
+					<div class="col">
+					
+						<div class="center padding">
+							<img class="qr-code" src="/images/qrcode.png">
+						</div>
+
+						<div class="center padding">
+							<button class="button button-assertive" ng-click="dashboard.showScanner()">
+								<i class="icon ion-qr-scanner"></i>
+								Scan QR Code
+							</button>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row row-bottom">
+				</div> -->
+
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

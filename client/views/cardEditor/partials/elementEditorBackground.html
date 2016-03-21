@@ -1,0 +1,138 @@
+<div ng-if="cardEditor.frontSideActive">
+	<!-- Front Side -->
+	<div class="grid-border text-small">	
+		<div class="row grid-border">
+			<div class="col">
+				<!-- <div class="item item-button-right"> -->
+					Image: <span class="text-ellipsis">{{cardEditor.cardModel.front.background.style['background-image']}}</span>
+					<button class="button button-small icon ion-edit"></button>
+						<!-- <i class="icon ion-edit"></i> -->
+					<!-- </button> -->
+					<!-- <input type="file" ng-model="cardEditor.background.front.image" /> -->
+				<!-- </div>				 -->
+			</div>
+			<div class="col-10">
+				<!-- <div class="item item-input"> -->
+					<!-- <div class="input-label"> -->
+						Color:				
+					<!-- </div> -->
+<!-- 					<div class="colorpicker">
+						<input type="color" ng-model="cardEditor.cardModel.front.background.style['background-color']" />
+					</div> -->
+					<!-- {{ cardEditor.cardModel.front.background.style['background-color'] || 'Name' }}  -->
+				<!-- </div> -->
+			</div>
+			<div class="col-10">
+				<input type="color" ng-model="cardEditor.cardModel.front.background.style['background-color']" />
+			</div>
+			<div class="col styled-select">
+				<!-- <label class="item item-input item-select"> -->
+					<!-- <div class="input-label"> -->
+						Size:
+					<!-- </div> -->
+					<select ng-options="item.name as item.name for item in cardEditor.backgroundOptions.size" ng-model="cardEditor.background.front.size"></select>
+				<!-- </label> -->
+				<!-- {{cardEditor.background.front.size}} -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<!-- <label class="item item-input item-select"> -->
+					<!-- <div class="input-label"> -->
+						Position:
+					<!-- </div> -->
+					<select ng-options="item.name as item.name for item in cardEditor.backgroundOptions.position" ng-model="cardEditor.cardModel.front.background.style['background-position']"></select>
+				<!-- </label> -->
+				<!-- {{cardEditor.cardModel.front.background.style['background-position']}} -->
+			</div>
+			<div class="col">
+				<!-- <label class="item item-input item-select"> -->
+					<!-- <div class="input-label"> -->
+						Repeat:
+					<!-- </div> -->
+					<select ng-options="item.value as item.name for item in cardEditor.backgroundOptions.repeat" ng-model="cardEditor.cardModel.front.background.style['background-repeat']"></select>
+				<!-- </label> -->
+				<!-- {{cardEditor.cardModel.front.background.style['background-repeat']}} -->
+			</div>
+			<div class="col">
+				<div ng-if="cardEditor.background.front.size === 'Percentage' ">
+					<!-- <div class="range range-positive"> -->
+						<i class="icon ion-ios-minus-outline"></i>
+						<input type="range" ng-model="cardEditor.background.front.percentage" min="0" max="100" value="100">
+						<i class="icon ion-ios-plus-outline"></i>
+					<!-- </div>	 -->
+					<!-- {{cardEditor.background.front.percentage}} -->
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Front Model Bindings -->
+
+<!-- Back Model Bindings -->
+<div ng-if="!cardEditor.frontSideActive">
+	<!-- Back Side -->
+	<div class="grid-border">	
+		<!-- <div class="row"> -->
+		<div>
+			<div class="col">
+				<div class="item item-button-right">
+					Image:
+					{{cardEditor.cardModel.back.background.style['background-image']}}
+					<button class="button">
+						<i class="icon ion-edit"></i>
+					</button>
+					<!-- <input type="file" ng-model="cardEditor.background.back.image" />		 -->
+				</div>				
+			</div>
+			<div class="col">
+				<div class="item item-input">
+					<div class="input-label">
+						Color:
+					</div>
+					<input type="color" ng-model="cardEditor.cardModel.back.background.style['background-color']" />
+					<!-- {{ cardEditor.cardModel.back.background.style['background-color'] || 'Name' }}  -->
+				</div> 
+			</div>
+			<div class="col">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Size:
+					</div>
+					<select ng-options="item.name as item.name for item in cardEditor.backgroundOptions.size" ng-model="cardEditor.background.back.size"></select>
+				</label>
+				<!-- {{cardEditor.background.back.size}} -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Position:
+					</div>
+					<select ng-options="item.name as item.name for item in cardEditor.backgroundOptions.position" ng-model="cardEditor.cardModel.back.background.style['background-position']"></select>
+				</label>
+				<!-- {{cardEditor.cardModel.back.background.style['background-position']}} -->
+			</div>
+			<div class="col">
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Repeat:
+					</div>
+					<select ng-options="item.value as item.name for item in cardEditor.backgroundOptions.repeat" ng-model="cardEditor.cardModel.back.background.style['background-repeat']"></select>
+				</label>
+				<!-- {{cardEditor.cardModel.back.background.style['background-repeat']}} -->
+			</div>
+			<div class="col">
+				<div ng-if="cardEditor.background.back.size === 'Percentage' ">
+					<div class="range range-positive">
+						<i class="icon ion-ios-minus-outline"></i>
+						<input type="range" ng-model="cardEditor.background.back.percentage" min="0" max="100" value="100">
+						<i class="icon ion-ios-plus-outline"></i>
+					</div>	
+					<!-- {{cardEditor.background.back.percentage}} -->
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>

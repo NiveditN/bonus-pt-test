@@ -1,0 +1,206 @@
+<ion-view view-title="Card Model Editor">
+
+	<ion-content has-bouncing="true" scroll="false">
+
+		<!-- <div class="full-height"> -->
+
+		<div id="editor" class="editor-wrapper full-height">
+
+			<div class="row full-height">
+				<!-- Elements -->
+				<!-- <div class="col col-20 grid-border full-height"> -->
+				<div class="editor-left-sidebar grid-border full-height text-small" ng-if="cardEditor.showLeft">
+					<div class="text-center">
+						<div ng-repeat="element in cardEditor.cardElements">
+							<div>
+								<button class="button button-small icon" ng-class="element.icon"></button>
+							</div>
+							<div>{{element.name}}</div>
+						</div>
+
+						<div ng-show="false">
+							<br/><hr/>
+							Temporary Dev Section:
+							<br/><br/>
+							<button class="button button-small" ng-click="cardEditor.getData()">Get Data</button>
+							<button class="button button-small" ng-click="cardEditor.toggleRight()">Toggle Right</button>
+							<button class="button button-small" ng-click="cardEditor.toggleLeft()">Toggle Left</button>
+							<button class="button button-small" ng-click="cardEditor.toggleEditor()">Toggle Editor</button>
+						</div>
+
+					</div>
+				</div>
+				<!-- Elements -->
+				
+				<!-- Main -->
+				<!-- <div class="col col-60 grid-border full-height"> -->
+				<div class="editor-body grid-border full-height">
+
+					<!-- Header -->
+					<!-- <div class="row grid-border"> -->
+					<div id="topBar" class="row row-top">
+						<!-- History -->
+						<div class="col col-30">
+							<button class="button button-small icon" ng-click="cardEditor.toggleLeft()" ng-class="cardEditor.showLeft ? 'ion-chevron-left' : 'ion-chevron-right' "></button>
+							<button class="button icon button-small ion-arrow-return-left"></button>
+							<button class="button icon button-small ion-arrow-return-right"></button>
+						</div>
+						<!-- History -->
+						<!-- Name -->
+						<div class="col col-40">
+							<div class="no-border">
+								<div ng-if="!cardEditor.editCardName" >
+									<div on-tap="cardEditor.toggleEditCardName()" class="text-center text-ellipsis">
+										{{cardEditor.cardModel.name}}
+									</div>
+								</div>							
+								<div ng-if="cardEditor.editCardName">
+									<input type="text" ng-model="cardEditor.cardModel.name" placeholder="Card Model Name" >
+								</div>
+							</div>						
+						</div>
+						<!-- Name -->
+						<!-- Description -->
+						<div class="col col-30">
+							<div class="text-right">
+								<button ng-if="cardEditor.editCardName" class="button button-small icon ion-checkmark" 
+								ng-click="cardEditor.toggleEditCardName()"></button>	
+								<button class="button button-small icon ion-chatbox-working" 
+								ng-click="cardEditor.showDescriptionPopup()"></button>	
+								<button class="button button-small icon" ng-click="cardEditor.toggleRight()" ng-class="cardEditor.showRight ? 'ion-chevron-right' : 'ion-chevron-left' "></button>
+							</div>	
+							
+						</div>
+						<!-- Description -->
+					</div>	
+					<!-- Header -->
+
+					<!-- Canvas -->
+					<!-- <div class="row"> -->
+						<div id="editorCanvas" class="editor-canvas text-center">
+							<!-- <div class="row">
+								<div class="col"> -->
+									<div ng-if="cardEditor.frontSideActive">
+										<!-- Front -->	
+										<div id="editorCanvasFront" class="grid-border" ng-style="cardEditor.cardModel.front.background.style">
+											<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModelDimensions"></div>
+										</div>
+									</div>
+									<div ng-if="!cardEditor.frontSideActive">
+										<!-- Back -->
+										<div id="editorCanvasBack" class="grid-border" ng-style="cardEditor.cardModel.back.background.style">
+											<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModelDimensions"></div>
+										</div>
+									</div>
+								<!-- </div>
+							</div> -->
+						</div>
+					<!-- </div>				 -->
+					<!-- Canvas -->
+
+					<!-- TABS WERE HERE -->	
+					<div id="bottomBar" class="grid-border">
+			<!-- Front/back tabs -->
+				<div class="row">
+					<div class="col col-20">
+						
+					</div>
+					<div class="col col-60">
+						<div class="align-center">
+							<div class="text-center">
+								<div class="button-bar">
+									<a class="button button-small" ng-click="cardEditor.showFrontSide()" ng-class="cardEditor.frontSideActive ? 'button-positive' : '' ">Front</a>
+									<a class="button button-small" ng-click="cardEditor.showBackSide()" ng-class="cardEditor.frontSideActive ? '' : 'button-positive' ">Back</a>
+								</div>
+							</div>							
+						</div>
+					</div>
+					<div class="col col-20 text-right">
+						<button class="button button-small icon" ng-click="cardEditor.toggleEditor()" ng-class="cardEditor.showEditor ? 'ion-chevron-down' : 'ion-chevron-up' "></button>
+					</div>
+				</div>	
+				<!-- Front/back tabs -->
+				<!-- ElementEditor -->			
+				<div id="elementEditor" ng-if="cardEditor.showEditor" class="row row-bottom">
+					<div class="col">	
+						<div class="element-editor" ng-include="'client/views/cardEditor/partials/elementEditorBackground.html'"></div>
+					</div>
+				</div>
+				<!-- ElementEditor -->
+			</div>
+				</div>
+				<!-- Main -->
+
+				<!-- Rules -->
+				<!-- <div class="col col-20 grid-border full-height"> -->
+				<div class="editor-right-sidebar grid-border text-small full-height" ng-if="cardEditor.showRight">
+					<div class="text-center">
+						<!-- <div class="row">
+							<div class="col"> -->
+							<div class="container0">
+								<div>
+									<button class="button button-small icon ion-plus" ng-click="cardEditor.showRuleSelectorModal()"></button>
+								</div>
+								<div>Add Rule</div>
+							</div>
+							<!-- </div>
+						</div> -->
+						<hr/>
+							<!-- <div class="row">
+							<div class="col"> -->
+							<div class="container1">
+								<div class="container2">
+									<div ng-repeat="rule in cardEditor.rules">
+										<div>
+											<button class="button button-small icon" ng-class="rule.icon"></button>
+										</div>
+										<div>{{rule.name}}</div>
+									</div>
+								</div>
+							</div>
+								
+							<!-- </div>
+						</div> -->
+					</div>				
+				</div>
+				<!-- </div> -->
+				<!-- Rules -->
+
+			</div>
+
+			
+
+		</div>
+
+		<!-- </div> -->
+
+	</ion-content>
+
+	<script id="rule-selector-modal.html" type="text/ng-template">
+		<ion-modal-view>
+			<ion-header-bar class="bar-royal">
+				<h1 class="title">Select Rules</h1>
+			</ion-header-bar>
+			<ion-content>
+				<div>
+					<ion-list>
+						<div ng-repeat="rule in cardEditor.rules">
+							<ion-radio ng-model="choice" ng-value="'A'">
+								<i class="icon" ng-class="rule.icon"></i>
+								<span>{{rule.name}}</span>
+								<span class="text-muted text-smaller">{{rule.description}}</span>
+							</ion-radio>
+						</div>						
+					</ion-list>
+				</div>
+			</ion-content>
+			<ion-footer-bar align-title="left" class="bar-positive">
+				<div class="buttons pull-right">
+					<button class="button" ng-click="cardEditor.hideRuleSelectorModal()">Add Rule</button>
+					<button class="button" ng-click="cardEditor.hideRuleSelectorModal()">Cancel</button>
+				</div>
+			</ion-footer-bar>
+		</ion-modal-view>
+	</script>
+
+</ion-view>

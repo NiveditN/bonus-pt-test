@@ -1,0 +1,88 @@
+<ion-view view-title="Shop">
+    
+    <ion-content class="has-subheader" has-bouncing="true">
+
+    	<div class="text-right">
+			<button ng-if="!shopCtrl.showUpdateView" class="button button-icon icon ion-edit" ng-click="shopCtrl.toggleView()"></button>
+			<button ng-if="shopCtrl.showUpdateView" class="button button-icon icon ion-close" ng-click="shopCtrl.toggleView()"></button>
+		</div>
+
+    	<!-- Details View -->
+    	<div ng-hide="shopCtrl.showUpdateView">
+    		<div class="list">
+				<div class="item item-divider">Shop Name</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.name}}</div>
+				<div class="item item-divider">Address</div>
+				<!-- <div class="item item-text-wrap">
+					<span class="label">Username</span>
+					<span class="inline">{{shopCtrl.shop.address.line1}}</span>
+				</div> -->
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.line1}}</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.line2}}</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.city}}</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.state}}</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.postalCode}}</div>
+				<div class="item item-text-wrap">{{shopCtrl.shop.address.country}}</div>
+			</div>
+    	</div>
+    	<!-- Details View -->
+
+    	<!-- Edit View -->
+		<div ng-show="shopCtrl.showUpdateView"> 
+			<div class="item item-divider"> 
+				Shop Details
+			</div>
+			<div class="list">													
+				<label class="item item-input">
+					<span class="input-label">Store Name</span>
+					<input type="text" ng-model="shopCtrl.shop.name" placeholder="Store Name" />
+				</label>
+				<div class="item item-divider"> 
+					Address
+				</div>
+				<label class="item item-input">
+					<span class="input-label">Address Line 1</span>
+					<input type="text" ng-model="shopCtrl.shop.address.line1" placeholder="Line 1" />
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Address Line 2</span>
+					<input type="text" ng-model="shopCtrl.shop.address.line2" placeholder="Line 2" />
+				</label>
+
+				<label class="item item-input">
+					<span class="input-label">City</span>
+					<input type="text" ng-model="shopCtrl.shop.address.city" placeholder="City" />
+				</label>
+				<label class="item item-input">
+					<span class="input-label">State</span>
+					<input type="text" ng-model="shopCtrl.shop.address.state" placeholder="State" />
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Postal Code</span>
+					<input type="text" ng-model="shopCtrl.shop.address.postalCode" placeholder="Postal Code" />
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						Country
+					</div>
+					<select ng-options="item.name as item.name for item in shopCtrl.countries track by item.name" ng-model="shopCtrl.shop.address.country"></select>
+				</label>
+			</div>
+
+			<div class="text-right">
+				<button ng-click="shopCtrl.update()" class="button button-calm button-block">
+					Update
+				</button>
+			</div>
+		</div>
+		<!-- Edit View -->		
+
+		<!-- <div class="card">
+			<div class="item item-text-wrap">
+				This is Shop view.
+			</div>
+		</div> -->
+		<!-- <button class="button" ng-click="shopCtrl.click(shopCtrl.shop)">Click Me</button> -->
+	    	    
+	</ion-content>
+</ion-view>

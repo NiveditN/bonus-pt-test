@@ -11,8 +11,10 @@ Meteor.methods({
 
     'registerOwnerId': function(data) {
         var ownerIdData = {
-            'ownerId.type.typeId': data.ownerIdType.id,
-            'ownerId.type.typeName': data.ownerIdType.name,
+            'owner.id.type.typeId': data.ownerIdType.id,
+            'owner.id.type.typeName': data.ownerIdType.name,
+            'owner.id.imageFront': data.imageFront,
+            'owner.id.imageBack': data.imageBack
         }
         console.log('REGISTERING BUSINESS ID');
         console.log(ownerIdData);
@@ -39,7 +41,8 @@ Meteor.methods({
                 state: data.state,
                 postalCode: data.postalCode,
                 country: data.country.name
-            }
+            },
+            businessDocument: data.businessDocument
         }
 
         console.log('REGISTERING BUSINESS');

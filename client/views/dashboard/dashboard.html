@@ -1,7 +1,103 @@
 <ion-view view-title="Dashboard">
-    <ion-content has-bouncing="true">
 
-    	This is the dashboard.
+    <ion-content class="has-subheader" has-bouncing="true">
+
+    	<!-- Scanner -->
+		<div class="row full-height" ng-hide="dashboard.showOptions">
+			<div class="col col-top"></div>
+			<div class="col col-center">
+
+				<div class="center">
+					<button class="button button-assertive" ng-click="dashboard.scanCode()">
+						<i class="icon ion-qr-scanner"></i>
+						Scan Code
+					</button>
+					<div ng-if="!dashboard.isCordova">
+						<button class="button button-clear" ng-click="dashboard.toggleView()">
+							Toggle View
+						</button>
+					</div>
+				</div>				
+				
+			</div>
+			<div class="col col-bottom"></div>
+		</div>	
+		<!-- Scanner ends -->
+
+		<!-- Transactions -->
+		<div ng-show="dashboard.showOptions">
+
+			<div class="row">
+				<div class="col text-right">
+					<button class="button button-icon icon ion-close" ng-click="dashboard.showAbortPopup()"></button>					
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<div class="item item-text-wrap text-center" ng-if="dashboard.actions.card">
+							<i class="icon icon-large ion-card"></i><br/>
+							Issue a card
+						</div>
+						<div class="item item-text-wrap text-center" ng-if="!dashboard.actions.card" ng-click="dashboard.openPopover($event);">
+							<i class="icon icon-large ion-card"></i><br/>
+							Issue a card
+						</div>
+					</div>							
+				</div>
+				<div class="col">
+					<div class="card">
+						<div class="item item-text-wrap text-center" ng-if="dashboard.actions.stamp">
+							<i class="icon icon-large ion-ribbon-b"></i><br/>
+							Issue a stamp
+						</div>
+						<div class="item item-text-wrap text-center" ng-if="!dashboard.actions.stamp" ng-click="dashboard.openPopover($event);">
+							<i class="icon icon-large ion-ribbon-b"></i><br/>
+							Issue a stamp (x)
+						</div>
+					</div>		
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="card" ng-if="dashboard.actions.gift">
+						<div class="item item-text-wrap text-center">
+							<i class="icon icon-large ion-star"></i><br/>
+							Issue a gift
+						</div>
+					</div>
+					<div class="card card-disabled" ng-if="!dashboard.actions.gift">
+						<div class="item item-text-wrap text-center" ng-click="dashboard.openPopover($event);">
+							<i class="icon icon-large ion-star"></i><br/>
+							Issue a gift <i class="icon ion-ios-information-outline" ></i>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					
+				</div>
+			</div>
+			
+		</div>
+		<!-- Transactions end -->
+
+	<script id="templates/popover.html" type="text/ng-template">
+      <ion-popover-view>
+        <ion-content>
+          <div class="list">
+            <a class="item" href="http://learn.ionicframework.com/" target="_blank">
+              Learn Ionic
+            </a>
+            <a class="item" href="http://ionicframework.com/docs/" target="_blank">
+              Documentation
+            </a>            
+          </div>
+        </ion-content>
+      </ion-popover-view>
+    </script>
 
 	</ion-content>
 </ion-view>
+

@@ -1,11 +1,10 @@
-/*Accounts.validateLoginAttempt(function(attempt) {
-    
-    if( ! attempt.user || ! attempt.user.profile.status.isActive){
+Accounts.validateLoginAttempt(function(attempt) {
+    if( ! attempt.user || ! attempt.user.emails[0].verified) {
         return false;
     } else {
         return true;
     }
-});*/
+});
 
 Meteor.methods({
 
@@ -65,8 +64,8 @@ Meteor.methods({
     },
 
     'createNewUser': function(userData) {
-        userData.profile.verified = false;
-        userData.profile.activated = false;
+        // userData.profile.verified = false;
+        // userData.profile.activated = false;
         return Accounts.createUser(userData);
     },
 
@@ -80,5 +79,4 @@ Meteor.methods({
     'updateUserProfile': function(userId, userData) {
         return Meteor.users.update({_id: userId },{ $set: userData });
     },
-
 });

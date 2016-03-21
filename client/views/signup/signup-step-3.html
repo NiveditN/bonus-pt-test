@@ -1,4 +1,16 @@
 <ion-view view-title="Personal Details">
+
+	<ion-nav-bar class="bar-stable">
+		<!-- <ion-nav-buttons>
+			<a class="button icon-left ion-home" href="#/login">Home</a>
+		</ion-nav-buttons> -->
+		<ion-nav-buttons>
+			<a class="button ion-log-out" href="#/login" ng-click="signup.goToLogin()">
+				Exit
+			</a>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+
     <ion-content has-bouncing="true">
 
     	<!-- App Name -->
@@ -33,15 +45,15 @@
 					
 						<label class="item item-input">
 							<span class="input-label">First Name</span>
-							<input type="text" ng-model="signup.profile.firstName" placeholder="First Name">
+							<input type="text" ng-model="signup.profile.firstName" placeholder="First Name" />
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Middle Name</span>
-							<input type="text" ng-model="signup.profile.middleName" placeholder="Middle Name">
+							<input type="text" ng-model="signup.profile.middleName" placeholder="Middle Name" />
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Last Name</span>
-							<input type="text" ng-model="signup.profile.lastName" placeholder="Last Name">
+							<input type="text" ng-model="signup.profile.lastName" placeholder="Last Name" />
 						</label>
 
 						<div class="item item-input">
@@ -71,12 +83,12 @@
 
 						<label class="item item-input">
 							<span class="input-label">Date of Birth</span>
-							<input type="date" ng-model="signup.profile.dateOfBirth" placeholder="Date of Birth">
+							<input type="date" ng-model="signup.profile.dateOfBirth" placeholder="Date of Birth" />
 						</label>
 
 						<label class="item item-input">
 							<span class="input-label">Mobile Number</span>
-							<input type="number" ng-model="signup.profile.mobile" placeholder="Mobile Number">
+							<input type="number" ng-model="signup.profile.mobile" placeholder="Mobile Number" />
 						</label>
 
 						<div class="item item-divider"> 
@@ -84,24 +96,24 @@
 				        </div>
 						<label class="item item-input">
 							<span class="input-label">Line 1</span>
-							<input type="text" ng-model="signup.profile.line1" placeholder="Line 1">
+							<input type="text" ng-model="signup.profile.line1" placeholder="Line 1" />
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Line 2</span>
-							<input type="text" ng-model="signup.profile.line2" placeholder="Line 2">
+							<input type="text" ng-model="signup.profile.line2" placeholder="Line 2" />
 						</label>
 
 						<label class="item item-input">
 							<span class="input-label">City</span>
-							<input type="text" ng-model="signup.profile.city" placeholder="City">
+							<input type="text" ng-model="signup.profile.city" placeholder="City" />
 						</label>
 						<label class="item item-input">
 							<span class="input-label">State</span>
-							<input type="text" ng-model="signup.profile.state" placeholder="State">
+							<input type="text" ng-model="signup.profile.state" placeholder="State" />
 						</label>
 						<label class="item item-input">
 							<span class="input-label">Postal Code</span>
-							<input type="text" ng-model="signup.profile.postalCode" placeholder="Postal Code">
+							<input type="text" ng-model="signup.profile.postalCode" placeholder="Postal Code" />
 						</label>
 
 						<div class="item item-divider"> 
@@ -119,18 +131,44 @@
 						<div class="item item-divider"> 
 					        Upload Scanned ID Front
 				        </div>
-						<label class="item item-input">
-							<!-- <span class="input-label">Upload</span> -->
-							<input type="file" ng-model="signup.profile.idFront" placeholder="Front">
-						</label>
+						<div class="images-container-title item item-input">
+				      <!--       <div flex>
+				                <div ngf-drop ngf-select
+				                     ngf-change="signup.addIdFront($files)"
+				                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+				                     ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*, application/pdf'"
+				                     ngf-drop-available="true">
+				                  <div>Drop Images or PDFs</div>
+				                  <div><strong>or</strong></div>
+				                  Click here to select files
+				                </div>
+				            </div> -->
+				        </div>
+
+						<!-- <label class="item item-input">
+							<input type="file" ng-model="signup.profile.idFront" placeholder="Front" />
+						</label> -->
+
 						<div class="item item-divider"> 
 					    	Upload Scanned ID Back
 				        </div>
-						<label class="item item-input">
-							<!-- <span class="input-label">Upload</span> -->
-							<input type="file" ng-model="signup.profile.idBack" placeholder="Back">
-						</label>
+						<div class="images-container-title item item-input">
+				      <!--       <div flex>
+				                <div ngf-drop ngf-select
+				                     ngf-change="signup.addIdBack($files)"
+				                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+				                     ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*, application/pdf'"
+				                     ngf-drop-available="true">
+				                  <div>Drop Images or PDFs</div>
+				                  <div><strong>or</strong></div>
+				                  Click here to select files
+				                </div>
+				            </div> -->
+				        </div>
 
+						<!-- <label class="item item-input">
+							<input type="file" ng-model="signup.profile.idBack" placeholder="Back" />
+						</label> -->
 					</div>
 
 					<!-- next -->

@@ -1,9 +1,19 @@
 angular
   .module('bonuspoint', [
     'angular-meteor',
+    'angular-meteor.auth',
+    'ui.router',
     'ionic',
-    'angularMoment'
+    'angularMoment',
+    'ngFileUpload',
+    'ngCordova',
+    'decipher.history',
+    'ionic-color-picker'
   ]);
+
+angular.module('bonuspoint').config(function($ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom')
+});
 
 if (Meteor.isCordova) {
   angular.element(document).on('deviceready', onReady);
@@ -14,4 +24,4 @@ else {
 
 function onReady() {
   angular.bootstrap(document, ['bonuspoint']);
-} 
+}

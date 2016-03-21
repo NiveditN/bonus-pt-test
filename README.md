@@ -1,2 +1,2 @@
-# bonus-pt-test
-Test code for BP project.
+# Bonuspoint-Business
+Code of Bonuspoint Business
