@@ -12,41 +12,6 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		height: '',
 		width: ''
 	}
-	function keepRatio(obj,ratio){
-    	obj.height(Math.round(obj.width()*ratio));
-	}
-	function setCardDimensionsByHeight(height) {
-		var h = height;
-		var w = Math.round(height/(0.6));
-		$('.cardModel').height(h);
-		$('.cardModel').width(w);
-		that.cardModelDimensions = {
-			height: h,
-			width: w
-		}
-		console.log(that.cardModelDimensions)
-	}
-	function initCardDimensions() {
-		var newCardHeight = $('#editor').height() -  $('#topBar').height() - $('#bottomBar').height() - 40;
-		console.log(newCardHeight);
-		setCardDimensionsByHeight(newCardHeight);
-	}
-	$(document).ready(function(){
-		initCardDimensions();
-		keepRatio($('.cardModel'),0.6);
-	    $(window).resize(function(){
-	    	keepRatio($('.cardModel'),0.6);
-	    	initCardDimensions();
-	    });
-	    $('#editor').resize(function(){
-	        keepRatio($('.cardModel'),0.6);
-	    	initCardDimensions();
-	    });	
-	    $('.cardModel').resize(function(){
-	        keepRatio($('.cardModel'),0.6);
-	    	initCardDimensions();
-	    });	 
-	});
 
 	// $reactive(this).attach($scope);
 	
@@ -61,41 +26,6 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	this.toggleRight = toggleRight;
 	this.toggleLeft = toggleLeft;
 	this.toggleEditor = toggleEditor;
-
-	function toggleRight() {
-		this.showRight = !(this.showRight);
-		if(this.showRight) {
-			this.rightSidebar = {
-				'display': 'none'
-			}
-		} else {
-			this.rightSidebar = {
-				'display': 'block'
-			}
-		}
-	}
-	function toggleLeft() {
-		this.showLeft = !(this.showLeft);
-	}
-	function toggleEditor() {
-		function resizeCanvas(obj, height) {
-			obj.height(obj.height() + height);
-			obj.width(Math.round(obj.height()/(0.6)));
-		}
-		if (this.showEditor) {
-	    	var canvasHeight = $('#elementEditor').height();
-	        resizeCanvas($('.cardModel'), canvasHeight);
-	        this.showEditor = false;
-		} 
-		else {
-			this.showEditor = true;
-			$timeout(function() {
-		    	var canvasHeight = $('#elementEditor').height();
-				canvasHeight = 0 - canvasHeight;
-				resizeCanvas($('.cardModel'), canvasHeight);
-			}, 100);
-		}		
-	}
 
 	this.showDescriptionPopup = showDescriptionPopup;
 	this.showRuleSelectorModal = showRuleSelectorModal;
@@ -182,24 +112,25 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	};
 
 	// Card Model Object
-	this.cardModel = {
+	// this.cardModel = {
+	that.cardModel = {
 		name: 'Card Model',
 		description: '',
 		front: {
 			background: {
 				style: {
-					"background-color": "#FFFFFF",
+					"background-color": "#98FB98",
 					"background-image": "url('smiley.gif')",
 					"background-repeat": "no-repeat",
 					"background-attachment": "fixed",
-					"background-position": "30% 20%"
+					"background-position": "30% 20%",
 				}
 			}
 		},
 		back: {
 			background: {
 				style: {
-					"background-color": "#FFFFFF",
+					"background-color": "#FF6347",
 					"background-image": "url('smiley.gif')",
 					"background-repeat": "no-repeat",
 					"background-attachment": "fixed",
@@ -215,6 +146,73 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		// console.log('Autorun!!', this.getReactively('cardModel', true));
 	});
 
+	function init() {
+		$timeout(function() {
+			console.log('Init')
+			initCardDimensions();		
+			keepRatio($('.cardModel'),0.6);
+		}, 1000);		
+	}
+
+	function keepRatio(obj,ratio){
+    	obj.height(Math.round(obj.width()*ratio));
+	}
+	function setCardDimensionsByHeight(height) {
+		var h = height;
+		var w = Math.round(height/(0.6));
+		$('.cardModel').height(h);
+		$('.cardModel').width(w);
+		that.cardModelDimensions = {
+			height: h,
+			width: w
+		}
+		that.cardModel.front.background.style.height = h;
+		that.cardModel.front.background.style.width = w;
+		that.cardModel.back.background.style.height = h;
+		that.cardModel.back.background.style.width = w;
+		console.log(that.cardModelDimensions)
+	}
+	function initCardDimensions() {
+		var newCardHeight = $('#editor').height() - $('#topBar').height() - $('#bottomBar').height() - 40;
+		console.log(newCardHeight);
+		setCardDimensionsByHeight(newCardHeight);
+	}
+
+	function toggleRight() {
+		this.showRight = !(this.showRight);
+		if(this.showRight) {
+			this.rightSidebar = {
+				'display': 'none'
+			}
+		} else {
+			this.rightSidebar = {
+				'display': 'block'
+			}
+		}
+	}
+	function toggleLeft() {
+		this.showLeft = !(this.showLeft);
+	}
+	function toggleEditor() {
+		function resizeCanvas(obj, height) {
+			obj.height(obj.height() + height);
+			obj.width(Math.round(obj.height()/(0.6)));
+		}
+		if (this.showEditor) {
+	    	var canvasHeight = $('#elementEditor').height();
+	        resizeCanvas($('.cardModel'), canvasHeight);
+	        this.showEditor = false;
+		} 
+		else {
+			this.showEditor = true;
+			$timeout(function() {
+		    	var canvasHeight = $('#elementEditor').height();
+				canvasHeight = 0 - canvasHeight;
+				resizeCanvas($('.cardModel'), canvasHeight);
+			}, 100);
+		}		
+	}
+
 	function toggleEditCardName() {
 		console.log('tapped')
 		if(this.cardModel.name.length <= 0) {
@@ -227,11 +225,9 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	}
 	function showFrontSide() {
 		this.frontSideActive = true;
-		// this.initCardDimensions();
 	}
 	function showBackSide() {
 		this.frontSideActive = false;
-		// this.initCardDimensions();
 	}
 
 	function showDescriptionPopup() {
@@ -319,6 +315,25 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		console.log('Selected', this.background);
 		console.log('Color', this.bgColor);
 	}
+
+	$(document).ready(function(){
+		keepRatio($('.cardModel'),0.6);
+	    $(window).resize(function(){
+	    	keepRatio($('.cardModel'),0.6);
+	    	initCardDimensions();
+	    });
+	    $('#editor').resize(function(){
+	        keepRatio($('.cardModel'),0.6);
+	    	initCardDimensions();
+	    });	
+	    $('.cardModel').resize(function(){
+	        keepRatio($('.cardModel'),0.6);
+	    	initCardDimensions();
+	    });
+		initCardDimensions();	 
+	});
+
+	init();
 
 }
 

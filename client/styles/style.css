@@ -171,12 +171,6 @@ html, body {
   position: relative;
   width: auto;
 }
-.editor-canvas-card {
-  display: block;
-  position: relative;
-  width: 75%;
-  /*height: ;*/
-}
 .editor-element {
   display: block;
   position: relative;
