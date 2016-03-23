@@ -17,11 +17,14 @@
 						<div ng-show="false">
 							<br/><hr/>
 							Temporary Dev Section:
-							<br/><br/>
+							<br/>
+							<button class="button button-small button-balanced" ng-click="cardEditor.insertElement()">Insert Element</button>
 							<button class="button button-small" ng-click="cardEditor.getData()">Get Data</button>
+							<!--
 							<button class="button button-small" ng-click="cardEditor.toggleRight()">Toggle Right</button>
 							<button class="button button-small" ng-click="cardEditor.toggleLeft()">Toggle Left</button>
 							<button class="button button-small" ng-click="cardEditor.toggleEditor()">Toggle Editor</button>
+							-->
 						</div>
 
 					</div>
@@ -75,7 +78,14 @@
 							<!-- Front -->	
 							<!-- <div id="editorCanvasFront" class="grid-border" ng-style="cardEditor.cardModel.front.background.style"> -->
 							<div id="editorCanvasFront" class="grid-border">
-								<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModel.front.background.style"></div>
+								<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModel.front.background.style">
+									<div id="editArea">
+										<test-element></test-element>
+										<div class="card-editor-element" ng-resizable ng-moveable> 1</div>
+										<div class="card-editor-element" ng-resizable ng-moveable> 2</div>
+										<div class="card-editor-element" ng-resizable ng-moveable> 3</div>
+									</div>
+								</div>
 								<!-- <div name="cardModel" class="cardModel" ng-style="cardEditor.cardModelDimensions"></div> -->
 								<!-- <div name="cardModel" class="cardModel"></div> -->
 							</div>
@@ -84,7 +94,10 @@
 							<!-- Back -->
 							<!-- <div id="editorCanvasBack" class="grid-border" ng-style="cardEditor.cardModel.back.background.style"> -->
 							<div id="editorCanvasBack" class="grid-border">
-								<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModel.back.background.style"></div>
+								<div name="cardModel" class="cardModel" ng-style="cardEditor.cardModel.back.background.style">
+									<div id="editArea">
+									</div>
+								</div>
 								<!-- <div name="cardModel" class="cardModel" ng-style="cardEditor.cardModelDimensions"></div> -->
 								<!-- <div name="cardModel" class="cardModel"></div> -->
 							</div>

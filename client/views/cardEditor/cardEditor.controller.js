@@ -4,7 +4,8 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	$ionicGesture, $timeout, History, testService, $timeout) {
 
 	var that = $reactive(this).attach($scope);
-
+	// $reactive(this).attach($scope);
+	
 	this.keepRatio = keepRatio;
 	this.setCardDimensionsByHeight = setCardDimensionsByHeight;
 	this.initCardDimensions = initCardDimensions;
@@ -12,12 +13,10 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		height: '',
 		width: ''
 	}
-
-	// $reactive(this).attach($scope);
 	
 	this.showRight = true;
 	this.showLeft = true;
-	this.showEditor = true;
+	this.showEditor = false;
 
 	this.rightSidebar = {
 		'display': 'block'
@@ -34,6 +33,7 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	this.toggleEditDescription = toggleEditDescription;
 	this.showFrontSide = showFrontSide;
 	this.showBackSide = showBackSide;
+	this.insertElement = insertElement;
 
 	this.editCardName = false;
 	this.editDescription = false;
@@ -170,11 +170,11 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		that.cardModel.front.background.style.width = w;
 		that.cardModel.back.background.style.height = h;
 		that.cardModel.back.background.style.width = w;
-		console.log(that.cardModelDimensions)
+		// console.log(that.cardModelDimensions)
 	}
 	function initCardDimensions() {
 		var newCardHeight = $('#editor').height() - $('#topBar').height() - $('#bottomBar').height() - 40;
-		console.log(newCardHeight);
+		// console.log(newCardHeight);
 		setCardDimensionsByHeight(newCardHeight);
 	}
 
@@ -308,6 +308,10 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		back: {
 			'background-color': this.$bindToContext(this.cardModel.back.background.style['background-color'])
 		}
+	}
+
+	function insertElement() {
+		console.log('Inserting element');
 	}
 
 	this.getData = function() {
