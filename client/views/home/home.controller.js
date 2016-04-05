@@ -8,7 +8,7 @@ function HomeCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log, $
 	this.init = init;
 
 	function init(callback) {
-		console.log('Initializing user data: ', Meteor.user());
+		// console.log('Initializing user data: ', Meteor.user());
 		this.businessId = Meteor.user().profile.businessId;
 		this.fullName = Meteor.user().profile.name.firstName + " " + Meteor.user().profile.name.lastName;
 		this.emailId = Meteor.user().emails[0].address;
@@ -24,30 +24,40 @@ function HomeCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $log, $
 
 	///////////////////////////////////// SUBSCRIPTIONS /////////////////////////////////////
 	
+	// users
+	this.subscribe('users');
+
+	// businesses
+	this.subscribe('businesses');
+
 	// shops
 	var subShops = this.subscribe('shopsByBusinessId', () => [this.getReactively('businessId')], {
 		onReady: function () {
-			console.log("onReady And the Items actually Arrive", arguments);
+			// console.log("onReady And the Items actually Arrive", arguments);
 		},
 		onStop: function (error) {
 			if (error) {
 				console.log('An error happened - ', error);
 			} else {
-				console.log('The subscription stopped');
+				// console.log('The subscription stopped');
 			}
 		}
 	});
 
 	// documents
 	this.subscribe('documents');
+
+	// cards
+	// this.subscribe('cardModels');
+	// this.subscribe('cards');
 	
 	///////////////////////////////////// SUBSCRIPTIONS /////////////////////////////////////
 
 
 	this.autorun(() => {
-		console.log('Autorun: user changed ', this.getReactively('user'));
+		// console.log('Autorun: user changed ', this.getReactively('user'));
 		this.init();
-		this.shop = Shops.find().fetch()[0];	
+		this.shop = Shops.find().fetch()[0];			
 	});
 
 	$ionicPopover.fromTemplateUrl('profile-popover.html', {

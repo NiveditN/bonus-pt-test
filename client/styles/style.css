@@ -151,13 +151,11 @@ html, body {
 .editor-left-sidebar {
   display: block;
   position: relative;
-  width: 14%;
   height: 100%;
 }
 .editor-right-sidebar {
   display: block;
   position: relative;
-  width: 14%;
   height: 100%;
 }
 .editor-body {
@@ -185,10 +183,12 @@ html, body {
 .container1 {
   width:100%;
   height: 76vh;
+  /*height: auto;*/
   overflow: hidden;
 }
 .container2 {
   height: 60vh;
+  /*height: auto;*/
   width: 100%;
   overflow-y: scroll;      
 }
@@ -273,4 +273,24 @@ html, body {
   position: absolute;  
   top: 40%;
   left: 40%;
+}
+
+.sidebar-collapse {
+  /*border: 1px royalblue solid;*/
+  width:20px;
+  text-align: center;
+}
+.sidebar-button {
+  /*background-color: lightblue;*/
+  position: relative;
+}
+.sidebar-button-fill {
+  height: 45vh;
+}
+.bottom-bar-collapse {
+  border: transparent;
+  height: auto;
+}
+.bottom-bar-button {
+  position: relative;
 }

@@ -8,7 +8,8 @@ angular
     'ngFileUpload',
     'ngCordova',
     'decipher.history',
-    'ionic-color-picker'
+    'ionic-color-picker',
+    'angular-flippy'
   ]);
 
 angular.module('bonuspoint').config(function($ionicConfigProvider) {

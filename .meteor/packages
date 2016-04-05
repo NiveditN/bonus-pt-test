@@ -26,16 +26,20 @@ aldeed:collection2
 accounts-password
 angular-meteor-auth
 email
-
 check
-# okland:accounts-phone
-# sanjo:jasmine
-# velocity:html-reporter
-
-# urigo:angular-blaze-template
-# hitchcott:qr-scanner
-# netanelgilad:ng-cordova
 cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
 mquandalle:bower
+
+# okland:accounts-phone
+# sanjo:jasmine
+# velocity:html-reporter
+# urigo:angular-blaze-template
+# hitchcott:qr-scanner
+# netanelgilad:ng-cordova
+# dbernhard:jquery-ui-draggable
+# dsyko:jquery-ui-touch-punch
+# mizzao:jquery-ui
+# planettraining:jquery-ui-drag-resize
+# udondan:jquery-ui-layout

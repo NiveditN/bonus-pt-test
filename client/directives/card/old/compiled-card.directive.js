@@ -4,7 +4,7 @@ angular.module('bonuspoint').directive('compiledCardModel', function() {
 		scope: {
 			cardInfo: '=info'
 		},
-		templateUrl: 'client/directives/card/compiled-card-front.tpl.html'
+		templateUrl: 'client/directives/card/old/compiled-card-front.tpl.html'
 	}
 });
 
@@ -14,7 +14,7 @@ angular.module('bonuspoint').directive('compiledCardModelBack', function() {
 		scope: {
 			cardInfo: '=info'
 		},
-		templateUrl: 'client/directives/card/compiled-card-back.tpl.html',
+		templateUrl: 'client/directives/card/old/compiled-card-back.tpl.html',
 		link: function (scope, element, attrs) {
 
 			scope.stampRows = 0;
@@ -24,7 +24,7 @@ angular.module('bonuspoint').directive('compiledCardModelBack', function() {
 
 
 			scope.$watch('cardInfo', function(newValue, oldValue) {
-				console.log("CARD CHANGES")
+				// console.log("CARD CHANGES")
 				if(!angular.isUndefined(scope.cardInfo.cardElements.rules.stampGift.stamps.rows)) {
 					scope.stampRows = scope.cardInfo.cardElements.rules.stampGift.stamps.rows;		
 					scope.stampRowsArray = new Array(scope.stampRows);			
@@ -36,7 +36,7 @@ angular.module('bonuspoint').directive('compiledCardModelBack', function() {
 			}, true);
 
 			scope.range = function(n) {
-				console.log('RANGE', n);
+				// console.log('RANGE', n);
 				return new Array(n);
 			};
 			scope.getStampRows = function() {

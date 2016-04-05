@@ -4,6 +4,6 @@ angular.module('bonuspoint').directive('simpleCardModel', function() {
 		scope: {
 			cardInfo: '=info'
 		},
-		templateUrl: 'client/directives/card/simple-card.tpl.html'
+		templateUrl: 'client/directives/card/old/simple-card.tpl.html'
 	}
 });

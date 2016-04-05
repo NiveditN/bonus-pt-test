@@ -1,0 +1,56 @@
+<div ng-style="element.style" style="position: absolute;">
+	
+	<!-- TEXT -->
+	<div ng-if="type === 'text'">
+		{{element.content}}
+	</div>
+
+	<!-- IMAGE -->
+	<div ng-if="type === 'image'">
+		<img ng-src="{{element.source}}" />
+	</div>
+
+	<!-- FIELD -->
+	<div ng-if="type === 'field'">
+		<!-- field here -->
+		{{element.name}}
+	</div>
+
+	<!-- BACKGROUND -->
+	<div ng-if="type === 'background'">
+		<!-- background here -->
+	</div>
+
+	<!-- RULE -->
+	<div ng-if="type === 'rule'">
+		
+		<!-- stampGift -->
+		<div ng-if="name === 'stampGift'">
+			<div ng-repeat="row in stampRows">
+				<!-- row -->
+				<div class="row">
+					<div ng-repeat="column in row">	
+						<!-- columns -->
+						<div class="col">
+							<img ng-if="column.stamp" ng-src="{{element.stamp.image}}" />
+							<img ng-if="!column.stamp" ng-src="{{element.stamp.placeholder}}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- startDate -->
+		<div ng-if="name === 'startDate'">
+			<!-- insert angular date filter once JS date object is implemented in Card Model-->
+			Start Date: {{element.dataFields.date.defaultValue}} 			
+		</div>
+
+		<!-- endDate -->
+		<div ng-if="name === 'endDate'">
+			<!-- insert angular date filter once JS date object is implemented in Card Model -->
+			End Date: {{element.dataFields.date.defaultValue}}			
+		</div>
+
+	</div>		
+</div>

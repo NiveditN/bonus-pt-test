@@ -1,33 +1,6 @@
-angular.module('bonuspoint').constant('BUSINESS_CONSTANTS', {
-	countries: [{ id: 1, name: 'Hong Kong' }, { id: 2, name: 'China' }],
-	ownerIdTypes: [{ id: 1, name: 'Government ID' }, { id: 2, name: 'Other ID' }],
-	salutations: [{ id: 1, name: 'Mr.' }, { id: 2, name: 'Ms.' }, { id: 3, name: 'Mrs.' }],
-	securityQuestions: [
-		{ id: 1, content: 'Which street did you grow up on?' }, 
-		{ id: 2, content: 'What is your favorite color?' }
-	]
-});
-
-angular.module('bonuspoint').constant('CARD_CONSTANTS', {
-	card: {
-		_id: '',
-		cardModelId: '',
-		userId: 'txFRjDLYsEK4hFWWN',
-		businessId: '',
-		data: {
-			stampGift: {
-				stampsAttained: 5,
-				giftsClaimed: 1,
-			},
-			startDate: '03-01-2016',
-			endDate: '03-01-2019',
-		},
-		createdOn: '03-01-2016',
-		updatedOn: '03-01-2016',
-		status: 'active'
-	},
-	cardModel: {
-		"_id": "",
+CardModelsSeed = [
+	{
+		"_id": "firstCard1234567890",
 		"name": "First Card",
 		"isActive": true,
 		"description": "",
@@ -238,5 +211,12 @@ angular.module('bonuspoint').constant('CARD_CONSTANTS', {
 				"font-style": "normal"
 			}
 		}]
-	} 
-})
+	}
+]
+
+if (CardModels.find().count() === 0) {
+    _.each(CardModelsSeed, function (cardModel) {
+        CardModels.insert(cardModel);
+        console.log("Card Model created successfully");
+    })
+}

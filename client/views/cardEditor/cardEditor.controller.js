@@ -1,7 +1,7 @@
 angular.module('bonuspoint').controller('CardEditorCtrl', CardEditorCtrl);
 
 function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, $ionicPopup, $ionicModal, $log, 
-	$ionicGesture, $timeout, History, testService, $timeout) {
+	$ionicGesture, $timeout, History, testService, $timeout, $window) {
 
 	var that = $reactive(this).attach($scope);
 	// $reactive(this).attach($scope);
@@ -17,10 +17,13 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	this.showRight = true;
 	this.showLeft = true;
 	this.showEditor = false;
-
-	this.rightSidebar = {
-		'display': 'block'
-	}
+	
+	// responsiveness variables
+	that.showLabels = true;				// shows labels under icons
+	that.buttonSize = 'button-small';
+	that.screenSize = '';
+	that.sidebar = { width: '14%' } 	// or width: 'auto';
+	// responsiveness variables
 
 	this.toggleRight = toggleRight;
 	this.toggleLeft = toggleLeft;
@@ -140,13 +143,52 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		}
 	};
 
-	
+	this.flip = flip;
+	function flip() {
+		this.frontSideActive = !(this.frontSideActive);
+		console.log('Flipped!')
+	}
+
+	this.onSwipeRight = onSwipeRight;
+	this.onSwipeLeft = onSwipeLeft;
+	function onSwipeRight() {
+		console.log('SWIPED RIGHT');
+		$rootScope.$broadcast('FLIP_RIGHT');
+	}
+	function onSwipeLeft() {
+		console.log('SWIPED LEFT');
+		$rootScope.$broadcast('FLIP_LEFT');
+	}	
 
 	this.autorun(() => {
 		// console.log('Autorun!!', this.getReactively('cardModel', true));
 	});
 
 	function init() {
+		if($window.innerWidth <= 640) {
+			console.log('Small screen detected');
+			console.log(that.showLabels, that.sidebar)
+			that.showLabels = false;
+			that.sidebar['width'] = 'auto';
+			that.buttonSize = 'button-small';
+			that.topBarButtonSize = 'button-small';
+			that.screenSize = 'small';
+		} else if($window.innerWidth >= 1240) {
+			console.log('Large screen detected');
+			that.showLabels = true;
+			that.sidebar['width'] = '14%';
+			that.buttonSize = 'button-large';
+			that.topBarButtonSize = '';
+			that.screenSize = 'medium';
+		}
+		else {
+			that.showLabels = true;
+			that.sidebar['width'] = '14%';
+			that.buttonSize = '';
+			that.topBarButtonSize = '';
+			that.screenSize = 'large';
+		}
+		console.log(that.showLabels, that.sidebar)
 		$timeout(function() {
 			console.log('Init')
 			initCardDimensions();		
@@ -180,15 +222,6 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 
 	function toggleRight() {
 		this.showRight = !(this.showRight);
-		if(this.showRight) {
-			this.rightSidebar = {
-				'display': 'none'
-			}
-		} else {
-			this.rightSidebar = {
-				'display': 'block'
-			}
-		}
 	}
 	function toggleLeft() {
 		this.showLeft = !(this.showLeft);
@@ -318,6 +351,8 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 		console.log('Card Model', this.cardModel);
 		console.log('Selected', this.background);
 		console.log('Color', this.bgColor);
+		console.log($window.innerWidth,  $window.innerHeight);
+		console.log(that.sidebar, that.showLabels);
 	}
 
 	$(document).ready(function(){
@@ -325,19 +360,24 @@ function CardEditorCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, 
 	    $(window).resize(function(){
 	    	keepRatio($('.cardModel'),0.6);
 	    	initCardDimensions();
+	    	init();
 	    });
 	    $('#editor').resize(function(){
 	        keepRatio($('.cardModel'),0.6);
 	    	initCardDimensions();
+	    	init();
 	    });	
 	    $('.cardModel').resize(function(){
 	        keepRatio($('.cardModel'),0.6);
 	    	initCardDimensions();
+	    	init();
 	    });
 		initCardDimensions();	 
 	});
 
 	init();
+	// that.$bindToContext(init());
+	// this.$bindToContext(init());
 
 }
 

@@ -1,13 +1,13 @@
 var CardModel = {
   "_id": "",
   "name": "",
-  "status": "active/inactive",
+  "isActive": true,
   "description": "",
-  "help": "",
+  "help": "'url'",
   "businessId": "",
   "rules": {
     "stampGift": {
-      "side": "'front/back'",
+      "side": false,
       "description": "",
       "rows": 2,
       "columns": 4,
@@ -72,7 +72,7 @@ var CardModel = {
       }
     },
     "startDate": {
-      "side": "front/back",
+      "side": false,
       "style": {
         "left": "%",
         "top": "%",
@@ -93,7 +93,7 @@ var CardModel = {
       }
     },
     "endDate": {
-      "side": "front/back",
+      "side": false,
       "style": {
         "left": "%",
         "top": "%",
@@ -114,122 +114,77 @@ var CardModel = {
       }
     }
   },
-  "front": {
-    "background": {
-      "style": {
+  "background": [
+    {
+      "side": true,
+      "style": { 
         "background-color": "#FFFFFF",
         "background-image": "url('smiley.gif')",
         "background-repeat": "no-repeat",
         "background-attachment": "fixed",
         "background-position": "30% 20%"
-      }
+      }      
     },
-    "texts": [
-      {
-        "content": "",
-        "url": "",
-        "style": {
-          "left": "%",
-          "top": "%",
-          "z-index": "",
-          "height": "%",
-          "width": "%",
-          "font-family": "Arial",
-          "font-size": "%",
-          "color": "#000000",
-          "font-weight": "bold",
-          "font-style": "normal"
-        }
-      }
-    ],
-    "images": [
-      {
-        "url": "",
-        "style": {
-          "left": "",
-          "top": "",
-          "z-index": "",
-          "height": "",
-          "width": ""
-        }
-      }
-    ],
-    "fields": [
-      {
-        "name": "collection_name.fieldName",
-        "url": "",
-        "style": {
-          "left": "",
-          "top": "",
-          "z-index": "",
-          "height": "",
-          "width": "",
-          "font-family": "",
-          "font-size": "",
-          "color": "",
-          "font-weight": "bold",
-          "font-style": "normal"
-        }
-      }
-    ]
-  },
-  "back": {
-    "background": {
+    {
+      "side": false,
       "style": {
         "background-color": "#FFFFFF",
         "background-image": "url('smiley.gif')",
         "background-repeat": "no-repeat",
         "background-attachment": "fixed",
-        "background-position": "30% 20%"
+        "background-position": "30% 20%"  
+      }      
+    }
+  ],
+  "texts": [
+    {
+      "side": true,
+      "content": "",
+      "url": "",
+      "style": {
+        "left": "%",
+        "top": "%",
+        "z-index": "",
+        "height": "%",
+        "width": "%",
+        "font-family": "Arial",
+        "font-size": "%",
+        "color": "#000000",
+        "font-weight": "bold",
+        "font-style": "normal"
       }
-    },
-    "texts": [
-      {
-        "content": "",
-        "url": "",
-        "style": {
-          "left": "%",
-          "top": "%",
-          "z-index": "",
-          "height": "%",
-          "width": "%",
-          "font-family": "Arial",
-          "font-size": "%",
-          "color": "#000000",
-          "font-weight": "bold",
-          "font-style": "normal"
-        }
+    }
+  ],
+  "images": [
+    {
+      "side": false,
+      "url": "",
+      "style": {
+        "left": "",
+        "top": "",
+        "z-index": "",
+        "height": "",
+        "width": ""
       }
-    ],
-    "images": [
-      {
-        "url": "",
-        "style": {
-          "left": "",
-          "top": "",
-          "z-index": "",
-          "height": "",
-          "width": ""
-        }
+    }
+  ],
+  "fields": [
+    {
+      "side": true,
+      "name": "collection_name.fieldName",
+      "url": "",
+      "style": {
+        "left": "",
+        "top": "",
+        "z-index": "",
+        "height": "",
+        "width": "",
+        "font-family": "",
+        "font-size": "",
+        "color": "",
+        "font-weight": "bold",
+        "font-style": "normal"
       }
-    ],
-    "fields": [
-      {
-        "name": "collection_name.fieldName",
-        "url": "",
-        "style": {
-          "left": "",
-          "top": "",
-          "z-index": "",
-          "height": "",
-          "width": "",
-          "font-family": "",
-          "font-size": "",
-          "color": "",
-          "font-weight": "bold",
-          "font-style": "normal"
-        }
-      }
-    ]
-  }
+    }
+  ]
 }

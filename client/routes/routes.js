@@ -17,7 +17,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	.state('root.home', {
 		url: '',
 		resolve: {
-			user: isAuthorized
+			user: isAuthorized			
 		},
 		abstract: true,
 		templateUrl: 'client/views/home/home.html',

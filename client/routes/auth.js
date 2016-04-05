@@ -7,7 +7,7 @@ function run($rootScope, $state) {
     // We can catch the error thrown when the $requireUser promise is rejected
     // and redirect the user back to the main page
 
-    console.log('Auth Error: ', error);
+    // console.log('Auth Error: ', error);
 
     if (error === 'AUTH_REQUIRED') {
       $state.go('login');

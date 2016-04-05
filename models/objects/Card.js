@@ -1,18 +1,17 @@
 var Card = {
 	_id: '',
-	userId: '',
 	cardModelId: '',
-	code: '',
-	cardData: {
-		redeemedStamps: 0,
-		redeemedGifts: 0,
-		fields: {
-			shopData: {},
-			customerData: {},
-			vendorData: {}
+	userId: '',
+	businessId: '',
+	data: {
+		stampGift: {
+			stampsAttained: 5,
+			giftsClaimed: 1,
 		},
+		startDate: '03-01-2016',
+		endDate: '03-01-2019',
 	},
-	createdOn: '',
-	updatedOn: '',
-	status: ''
+	createdOn: '03-01-2016',
+	updatedOn: '03-01-2016',
+	status: 'active'
 }

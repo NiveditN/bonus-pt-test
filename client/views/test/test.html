@@ -9,6 +9,88 @@
 			</div>
 		</div>
 
+		<!-- Card -->
+		<div>
+			<div class="item item-divider"> 
+				Card
+			</div>	
+			<div class="item item-text-wrap">
+				<button class="button button-outline button-dark" ng-click="test.flipCard()">Flip</button>	
+				{{test.cardFront}}
+			</div>
+			<div style="height:350px; margin: 10px;">
+				<div>
+					<card card="test.card" active-side="test.cardFront"></card>
+				</div>				
+			</div>			
+		</div>
+
+		<!-- Card Model -->
+		<div>
+			<div class="item item-divider"> 
+				Card Model
+			</div>	
+			<div class="item item-text-wrap">
+				<button class="button button-outline button-dark" ng-click="test.flipModel()">Flip</button>	
+				{{test.cardModelFront}}
+			</div>
+			<div style="height:350px; margin: 10px;">
+				<div>
+					<card-model model="test.cardModel" active-side="test.cardModelFront"></card-model>
+				</div>				
+			</div>			
+		</div>
+
+		<!-- Flipper -->
+		<div>
+			<div class="item item-divider"> 
+				Flipper
+			</div>	
+			<div class="item item-text-wrap">
+				Swipe right for back, swipe left for front.		
+			</div>		
+			<div class="item item-text-wrap">
+				<div class="" style="height:220px;" on-swipe-right="test.onSwipeRight()" on-swipe-left="test.onSwipeLeft()">
+					<flippy
+					    flip="['custom:FLIP_RIGHT']"
+					    flip-back="['custom:FLIP_LEFT']"
+					    duration="1000"
+					    timing-function="ease-in-out">
+					    <flippy-front>
+						    <div style="border:2px solid blue; padding: 100px; background-color: lightblue">
+								<div>FRONT</div>
+							</div>							
+						</flippy-front>
+						<flippy-back>
+							<div style="border:2px solid red; padding: 100px; background-color: lightpink">
+								BACK
+							</div>			
+						</flippy-back>
+					</flippy>								
+				</div>	
+			</div>
+			<div class="item item-text-wrap">
+				<div style="height:50px;">
+					<flippy
+					    flip="['click', 'mouseenter']"
+					    flip-back="['click', 'mouseleave']"
+					    duration="1000"
+					    timing-function="ease-in-out">
+					    <flippy-front>
+						    <div style="border:2px solid blue; padding: 10px; background-color: lightblue">
+								ABC
+							</div>
+						</flippy-front>
+						<flippy-back>
+							<div style="border:2px solid red; padding: 10px; background-color: lightpink">
+								XYZ
+							</div>
+						</flippy-back>
+					</flippy>					
+				</div>
+			</div>			
+		</div>
+
 		<!-- Screen Orientation -->
 		<div>
 			<div class="item item-divider"> 

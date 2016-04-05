@@ -1,9 +1,64 @@
 angular.module('bonuspoint').controller('TestCtrl', TestCtrl);
 
 function TestCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, $ionicPopup, $log, 
-	$cordovaBarcodeScanner, $ionicGesture, $timeout, History, testService) {
+	$cordovaBarcodeScanner, $ionicGesture, $timeout, History, testService, $rootScope, CARD_CONSTANTS) {
 
 	$reactive(this).attach($scope);
+
+	this.card = {};
+	this.cardModel = {};
+
+	this.subscribe('cards', () => [], {
+		onReady: function() {
+			// console.log('CARDS READY')
+		}
+	});
+	this.subscribe('cardModels', () => [], {
+		onReady: function() {
+			// console.log('CARD MODELS READY')
+		}
+	});
+
+	this.autorun(() => {
+		this.card = Cards.findOne();
+		this.cardModel = CardModels.findOne();	
+	});
+
+	//////////////////  CARD  //////////////////
+
+	this.cardFront = true;
+	this.flipCard = flipCard;
+	function flipCard() {
+		this.cardFront = !(this.cardFront);
+	}
+
+	//////////////////  CARD MODEL  //////////////////
+
+	this.cardModelFront = true;
+	this.flipModel = flipModel;
+	function flipModel() {
+		this.cardModelFront = !(this.cardModelFront);
+	}
+
+	// border:2px solid blue; padding: 100px; background-color: lightblue
+
+	//////////////////  FLIP + SWIPE  //////////////////
+
+	this.onSwipe = onSwipe;
+	this.onSwipeRight = onSwipeRight;
+	this.onSwipeLeft = onSwipeLeft;
+	function onSwipe() {
+		console.log('SWIPED');
+		$rootScope.$broadcast('FLIP_IT');
+	}
+	function onSwipeRight() {
+		console.log('SWIPED RIGHT');
+		$rootScope.$broadcast('FLIP_RIGHT');
+	}
+	function onSwipeLeft() {
+		console.log('SWIPED LEFT');
+		$rootScope.$broadcast('FLIP_LEFT');
+	}
 
 	////////////////// SCREEN ORIENTATION //////////////////
 	this.getOrientation = getOrientation;
@@ -148,17 +203,17 @@ function TestCtrl($scope, $reactive, $state, $stateParams, $ionicLoading, $ionic
 
 	/////////////////// CARD MODEL //////////////////
 
-	this.getCard = getCard;
-	this.card = {};
+	// this.getCard = getCsard;
+	// this.card = {};
 	
-	function getCard () {
-		console.log('getting card')
-		console.log('THIS 1', this)
-		Meteor.call('getCard', this.$bindToContext(function(err, res) {
-			console.log(err, res);
-			this.card = res;
-		}));
-	}
+	// function getCard () {
+	// 	console.log('getting card')
+	// 	console.log('THIS 1', this)
+	// 	Meteor.call('getCard', this.$bindToContext(function(err, res) {
+	// 		console.log(err, res);
+	// 		this.card = res;
+	// 	}));
+	// }
 
 	////////////////// HISTORY: Simple ///////////////////
 

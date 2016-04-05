@@ -18,11 +18,7 @@ function DashboardCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $i
     that.isCordova = Meteor.isCordova;
 
 	function toggleView(callback) {
-		console.log('In toggle view');
-		console.log(that.showOptions);
 		that.showOptions = !that.showOptions;
-		console.log(that.showOptions);
-		console.log('Leaving toggle view');
 	}
 	
 	function getShop() {
@@ -32,7 +28,7 @@ function DashboardCtrl($scope, $reactive, $state, $ionicLoading, $ionicPopup, $i
 			} 
 			// console.log('Success', result);
 			that.shop = result;
-			console.log('Shop:', that.shop);
+			// console.log('Shop:', that.shop);
 			return result.name;
 		});
 	}
